@@ -32,7 +32,7 @@
 		MenuItem *highScore = [MenuItemFont itemFromString:@"HighScore"  target:self selector:@selector(onHighScore:)];
 		Menu *menu = [Menu menuWithItems:start, highScore, sound,nil];
 		Sprite* backGround = [Sprite spriteWithFile:@"Bub.png"];
-        [backGround setPosition:ccp(240,160)];
+        [backGround setPosition:ccp(160,240)];
 		[menu alignItemsVerticallyWithPadding:10];
         [self addChild:menu z:1];
 		[self addChild:backGround z:0];

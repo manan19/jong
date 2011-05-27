@@ -19,7 +19,7 @@
 
 	
 	//[[Director sharedDirector] setLandscape:YES];
-	[[Director sharedDirector] setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
+	[[Director sharedDirector] setDeviceOrientation:CCDeviceOrientationPortrait];
     [[Director sharedDirector] attachInWindow:window];
 	
     [window makeKeyAndVisible];	

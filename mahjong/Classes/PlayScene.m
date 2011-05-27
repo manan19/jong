@@ -73,7 +73,7 @@ int mainLayoutArray[4][36] = {
 	if ((self = [super init]))
 	{
 		Sprite* backGroundImage = [Sprite spriteWithFile:@"Bub.png"];
-		[backGroundImage setPosition:ccp(240,160)];
+		[backGroundImage setPosition:ccp(160,240)];
 		[self addChild:backGroundImage z:0];
 		[self addChild:[BackgroundLayer node] z:0 tag:0];
 		
@@ -125,7 +125,7 @@ int mainLayoutArray[4][36] = {
 		enableTouch = FALSE;
 		
 		bonusLabel = [Sprite spriteWithFile:@"blocks.png"];
-		[bonusLabel setPosition:ccp(240,160)];
+		[bonusLabel setPosition:ccp(160,240)];
 		[bonusLabel setOpacity:127];
 		[bonusLabel setVisible:FALSE];
 		[self addChild:bonusLabel z:2];
@@ -133,7 +133,7 @@ int mainLayoutArray[4][36] = {
 		[MenuItemFont setFontSize:19];
 		MenuItem *pauseButton = [MenuItemFont itemFromString:@"Pause Game" target:self  selector:@selector(onPauseGame:)];
 		menu = [Menu menuWithItems:pauseButton,nil];
-		[menu setPosition:ccp(420,30)];
+		[menu setPosition:ccp(60,450)];
 		[menu setVisible:NO];
 		[self addChild:menu];
 		
@@ -145,12 +145,12 @@ int mainLayoutArray[4][36] = {
 		
 		
 		scoreLabel = [Label labelWithString:[NSString stringWithFormat: @"%d",gameScore] fontName:@"Arial" fontSize:16];
-		[scoreLabel setPosition:ccp(20,30)];
+		[scoreLabel setPosition:ccp(20,80)];
 		[scoreLabel setVisible:NO];
 		[self addChild:scoreLabel z:0];
 		
 		timerBar = [AtlasSprite spriteWithRect:CGRectMake(0,0, 148, 11) spriteManager:timerSprites];
-		[timerBar setPosition:ccp(380,300)];
+		[timerBar setPosition:ccp(220,450)];
 		[timerBar setScale:1.0f];
 		[timerBar setVisible:NO];
 		[timerSprites addChild:timerBar z:0];
@@ -237,12 +237,12 @@ int mainLayoutArray[4][36] = {
 	if (timex <=148)
 	{
 		[timerBar setTextureRect:CGRectMake(0,0,148-timex,11)];
-		[timerBar setPosition:ccp(380-(timex/2),300)];
+		[timerBar setPosition:ccp(220-(timex/2),450)];
 	}
 	else
 	{
 		readyLabel = [Label labelWithString:@"Time Over" fontName:@"Arial" fontSize:30];
-		[readyLabel setPosition:ccp(240,220)];
+		[readyLabel setPosition:ccp(160,380)];
 		[self addChild:readyLabel z:1];
 		[timerSprites removeChild:timerBar cleanup:YES];
 		/*if(timerScheduler)
@@ -258,7 +258,7 @@ int mainLayoutArray[4][36] = {
 {
 	NSString* str = [NSString stringWithFormat:@"Ready Round %d",(roundNumber+1)];
 	readyLabel = [Label labelWithString:str fontName:@"Arial" fontSize:30];
-	[readyLabel setPosition:ccp(240,160)];
+	[readyLabel setPosition:ccp(160,240)];
 	[self addChild:readyLabel z:0];
 	currentLayoutIndex = roundNumber;
 	[self schedule:@selector(beginRoundFunc) interval:3];
@@ -368,11 +368,11 @@ int mainLayoutArray[4][36] = {
 	
 	if (numRows%2 == 1)
 	{
-		firstCenter = ccp(240 - (numCols/2)*27*tileScale,140+(numRows/2)*30*tileScale);
+		firstCenter = ccp(160 - (numCols/2)*27*tileScale,220+(numRows/2)*30*tileScale);
 	}
 	else
 	{
-		firstCenter = ccp(240 - ((numCols/2)-0.5f)*27*tileScale,140 + ((numRows/2)-0.5f)*30*tileScale);
+		firstCenter = ccp(160 - ((numCols/2)-0.5f)*27*tileScale,220 + ((numRows/2)-0.5f)*30*tileScale);
 	}
 	
 	
@@ -537,13 +537,13 @@ int mainLayoutArray[4][36] = {
 	UITouch* touch = [allTouches anyObject];
 	CGPoint currentPoint = [touch locationInView:[touch view]];
 	
-	currentPoint = ccp(currentPoint.y,currentPoint.x);
+	currentPoint = ccp(currentPoint.x,480-currentPoint.y);
 	
-	if (abs(currentPoint.x - previousTouch.x) > 40 && abs(currentPoint.y - previousTouch.y) < 20 && enableTouch)
+	/*if (abs(currentPoint.x - previousTouch.x) > 40 && abs(currentPoint.y - previousTouch.y) < 20 && enableTouch)
 	{
 		[self onTakeScore];
 		return kEventHandled;
-	}
+	}*/
 	
 	if (enableTouch)
 	{
@@ -634,7 +634,7 @@ int mainLayoutArray[4][36] = {
 		bonusCounter++;
 		timex = 0;
 		[timerBar setTextureRect:CGRectMake(0,0,148-timex,11)];
-		[timerBar setPosition:ccp(380,300)];
+		[timerBar setPosition:ccp(220,450)];
 		[timerBar setScale:1.0f];
 		
 		gameScore += 4*timeLeftCount;
@@ -819,7 +819,7 @@ int mainLayoutArray[4][36] = {
 	if (parameter == 1)
 	{
 		Label* time = [Label labelWithString:@"Time Over" fontName:@"Arial" fontSize:30];
-		[time setPosition:ccp(240,220)];
+		[time setPosition:ccp(160,220)];
 		[self addChild:time z:1];
 	}
 	
@@ -827,12 +827,12 @@ int mainLayoutArray[4][36] = {
 	{
 		NSLog(@"start add");
 		Label* lessScore = [Label labelWithString:@"Insufficient Score" fontName:@"Arial" fontSize:30];
-		[lessScore setPosition:ccp(240,220)];
+		[lessScore setPosition:ccp(160,220)];
 		[self addChild:lessScore z:1];
 	}
 	
 	gameOverLabel = [Label labelWithString:str fontName:@"Arial" fontSize:25];
-	[gameOverLabel setPosition:ccp(240,160)];
+	[gameOverLabel setPosition:ccp(160,160)];
 	[self addChild:gameOverLabel z:0];
 	
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -853,7 +853,8 @@ int mainLayoutArray[4][36] = {
 	if (self == [super init])
 	{
 		Sprite* bg = [Sprite spriteWithFile:@"Bub.png"];
-		[bg setPosition:ccp(240,160)];
+		[bg setPosition:ccp(160,240)];
+        
 		[self addChild:bg];
 		MenuItem *resumeButton = [MenuItemFont itemFromString:@"Resume" target:self selector:@selector(onResume:)];
 		MenuItemToggle *sound; 
@@ -868,7 +869,7 @@ int mainLayoutArray[4][36] = {
 
 		Menu* menu = [Menu menuWithItems:resumeButton,sound,nil];
 		[menu alignItemsVerticallyWithPadding:10];
-		[menu setPosition:ccp(240,160)];
+		[menu setPosition:ccp(160,240)];
 		[self addChild:menu z:0];
 	}
 	return self;
