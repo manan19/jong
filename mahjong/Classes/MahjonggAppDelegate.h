@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AdManager.h"
+
 
 @interface MahjonggAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+    UIViewController *placeHolderViewController;
+    UIView *gameView;
+    AdManager* adManager;
 }
 
 @end

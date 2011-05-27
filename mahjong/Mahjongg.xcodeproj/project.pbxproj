@@ -12,6 +12,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		59F14B54138F63B100789999 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F14B53138F63B100789999 /* libFlurry.a */; };
+		59F14B58138F644E00789999 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F14B57138F644E00789999 /* AdManager.m */; };
+		59F14B5A138F64E600789999 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F14B59138F64E600789999 /* iAd.framework */; };
 		6E6E10820FC0AA9200E5CA7B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6E10800FC0AA9200E5CA7B /* OpenGLES.framework */; };
 		6E6E10830FC0AA9200E5CA7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6E10810FC0AA9200E5CA7B /* QuartzCore.framework */; };
 		84098C0E1067564B008A96D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84098C0D1067564B008A96D7 /* AudioToolbox.framework */; };
@@ -101,6 +104,11 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mahjongg_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mahjongg_Prefix.pch; sourceTree = "<group>"; };
+		59F14B52138F63B100789999 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
+		59F14B53138F63B100789999 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		59F14B56138F644E00789999 /* AdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
+		59F14B57138F644E00789999 /* AdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
+		59F14B59138F64E600789999 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		5A512F82105F7E2B00AD0ABC /* vorbis.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vorbis.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E6E10800FC0AA9200E5CA7B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		6E6E10810FC0AA9200E5CA7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -253,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59F14B5A138F64E600789999 /* iAd.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -260,6 +269,7 @@
 				6E6E10830FC0AA9200E5CA7B /* QuartzCore.framework in Frameworks */,
 				84098C0E1067564B008A96D7 /* AudioToolbox.framework in Frameworks */,
 				D97A6E8F106CDC9B000D1D57 /* libz.1.2.3.dylib in Frameworks */,
+				59F14B54138F63B100789999 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,10 +286,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				59F14B51138F63B100789999 /* FlurryLib */,
 				D97A6D9A106CD32B000D1D57 /* cocos2d */,
 				E89872AF101EE6D40092A1B7 /* Scenes */,
 				1D3623240D0F684500981E51 /* MahjonggAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MahjonggAppDelegate.m */,
+				59F14B56138F644E00789999 /* AdManager.h */,
+				59F14B57138F644E00789999 /* AdManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -296,6 +309,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				59F14B59138F64E600789999 /* iAd.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -350,6 +364,15 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		59F14B51138F63B100789999 /* FlurryLib */ = {
+			isa = PBXGroup;
+			children = (
+				59F14B52138F63B100789999 /* FlurryAPI.h */,
+				59F14B53138F63B100789999 /* libFlurry.a */,
+			);
+			path = FlurryLib;
+			sourceTree = SOURCE_ROOT;
 		};
 		D97A6D9A106CD32B000D1D57 /* cocos2d */ = {
 			isa = PBXGroup;
@@ -654,6 +677,7 @@
 				D97A6E47106CD32B000D1D57 /* TouchDispatcher.m in Sources */,
 				D97A6E48106CD32B000D1D57 /* TouchHandler.m in Sources */,
 				D97A6E49106CD32B000D1D57 /* Transition.m in Sources */,
+				59F14B58138F644E00789999 /* AdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +704,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/FlurryLib\"",
 				);
 				PRODUCT_NAME = Mahjongg;
 			};
@@ -696,6 +721,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/FlurryLib\"",
 				);
 				PRODUCT_NAME = Mahjongg;
 			};
