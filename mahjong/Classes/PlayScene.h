@@ -17,7 +17,7 @@
 #define numberOfColumns 6
 #define numberOfTiles 144
 #define numberOfLayers 5
-#define numberOfGames 4
+#define numberOfGames 10
 
 
 
@@ -68,7 +68,7 @@
 	SystemSoundID shortSound;
 	NSURL* audioFile;
  	tileSprite* tileBoard[numberOfRows][numberOfColumns][numberOfLayers];
-	int layoutArray[4][36];
+	int layoutArray[10][36];
 	BOOL tileIDtracker[numberOfTiles];
 	CGPoint previousTouch;
 	int bonusCounter,bonusFlashCount;
