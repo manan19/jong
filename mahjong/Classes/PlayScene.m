@@ -750,7 +750,7 @@ int mainLayoutArray[4][36] = {
 	int k = currentTile->indexK;
 	
 	
-	NSLog([NSString stringWithFormat:@"%d,%d,%d gone",i,j,k]);
+	//NSLog([NSString stringWithFormat:@"%d,%d,%d gone",i,j,k]);
 	// enable the left tile
 	if (j != 0 && tileBoard[i][j-1][k] != NULL && tileBoard[i][j-1][k]->isRendered && !tileBoard[i][j-1][k]->isEnabled)
 	{
@@ -760,7 +760,7 @@ int mainLayoutArray[4][36] = {
 		}
 		else*/
 		{
-			NSLog([NSString stringWithFormat:@"%d,%d,%d left",i,(j-1),k]);
+			//NSLog([NSString stringWithFormat:@"%d,%d,%d left",i,(j-1),k]);
 			tileBoard[i][j-1][k]->isEnabled = TRUE;
 
 		}
@@ -773,7 +773,7 @@ int mainLayoutArray[4][36] = {
 		}
 		else*/ 
 		{
-			NSLog([NSString stringWithFormat:@"%d,%d,%d right",i,(j+1),k]);
+			//NSLog([NSString stringWithFormat:@"%d,%d,%d right",i,(j+1),k]);
 			tileBoard[i][j+1][k]->isEnabled = TRUE;
 
 		}
@@ -798,7 +798,7 @@ int mainLayoutArray[4][36] = {
 		}
 		else if (!tileBoard[i][j][k-1]->isEnabled)
 		{
-			NSLog([NSString stringWithFormat:@"%d,%d,%d bottom",i,j,(k-1)]);
+			//NSLog([NSString stringWithFormat:@"%d,%d,%d bottom",i,j,(k-1)]);
 			tileBoard[i][j][k-1]->isEnabled = TRUE;
 		}
 

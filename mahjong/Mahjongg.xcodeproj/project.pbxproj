@@ -12,6 +12,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		59C17F0B138F7DF500B4D1B5 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0A138F7DF500B4D1B5 /* libGoogleAdMobAds.a */; };
+		59C17F0D138F7E7300B4D1B5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0C138F7E7300B4D1B5 /* MessageUI.framework */; };
+		59C17F0F138F7E7D00B4D1B5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0E138F7E7D00B4D1B5 /* SystemConfiguration.framework */; };
 		59F14B54138F63B100789999 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F14B53138F63B100789999 /* libFlurry.a */; };
 		59F14B58138F644E00789999 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F14B57138F644E00789999 /* AdManager.m */; };
 		59F14B5A138F64E600789999 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F14B59138F64E600789999 /* iAd.framework */; };
@@ -104,6 +107,15 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mahjongg_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mahjongg_Prefix.pch; sourceTree = "<group>"; };
+		59C17F04138F7DF500B4D1B5 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		59C17F05138F7DF500B4D1B5 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		59C17F06138F7DF500B4D1B5 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		59C17F07138F7DF500B4D1B5 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		59C17F08138F7DF500B4D1B5 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		59C17F09138F7DF500B4D1B5 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		59C17F0A138F7DF500B4D1B5 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		59C17F0C138F7E7300B4D1B5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		59C17F0E138F7E7D00B4D1B5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		59F14B52138F63B100789999 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		59F14B53138F63B100789999 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		59F14B56138F644E00789999 /* AdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
@@ -261,6 +273,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C17F0F138F7E7D00B4D1B5 /* SystemConfiguration.framework in Frameworks */,
+				59C17F0D138F7E7300B4D1B5 /* MessageUI.framework in Frameworks */,
 				59F14B5A138F64E600789999 /* iAd.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -270,6 +284,7 @@
 				84098C0E1067564B008A96D7 /* AudioToolbox.framework in Frameworks */,
 				D97A6E8F106CDC9B000D1D57 /* libz.1.2.3.dylib in Frameworks */,
 				59F14B54138F63B100789999 /* libFlurry.a in Frameworks */,
+				59C17F0B138F7DF500B4D1B5 /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +301,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				59C17F03138F7DF500B4D1B5 /* GoogleAdMobAdsSDK */,
 				59F14B51138F63B100789999 /* FlurryLib */,
 				D97A6D9A106CD32B000D1D57 /* cocos2d */,
 				E89872AF101EE6D40092A1B7 /* Scenes */,
@@ -309,7 +325,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				59F14B59138F64E600789999 /* iAd.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -354,6 +369,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59C17F0E138F7E7D00B4D1B5 /* SystemConfiguration.framework */,
+				59C17F0C138F7E7300B4D1B5 /* MessageUI.framework */,
+				59F14B59138F64E600789999 /* iAd.framework */,
 				84098C0D1067564B008A96D7 /* AudioToolbox.framework */,
 				6E6E10800FC0AA9200E5CA7B /* OpenGLES.framework */,
 				6E6E10810FC0AA9200E5CA7B /* QuartzCore.framework */,
@@ -364,6 +382,20 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		59C17F03138F7DF500B4D1B5 /* GoogleAdMobAdsSDK */ = {
+			isa = PBXGroup;
+			children = (
+				59C17F04138F7DF500B4D1B5 /* GADBannerView.h */,
+				59C17F05138F7DF500B4D1B5 /* GADBannerViewDelegate.h */,
+				59C17F06138F7DF500B4D1B5 /* GADInterstitial.h */,
+				59C17F07138F7DF500B4D1B5 /* GADInterstitialDelegate.h */,
+				59C17F08138F7DF500B4D1B5 /* GADRequest.h */,
+				59C17F09138F7DF500B4D1B5 /* GADRequestError.h */,
+				59C17F0A138F7DF500B4D1B5 /* libGoogleAdMobAds.a */,
+			);
+			path = GoogleAdMobAdsSDK;
+			sourceTree = SOURCE_ROOT;
 		};
 		59F14B51138F63B100789999 /* FlurryLib */ = {
 			isa = PBXGroup;
@@ -705,6 +737,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/FlurryLib\"",
+					"\"$(SRCROOT)/GoogleAdMobAdsSDK\"",
 				);
 				PRODUCT_NAME = Mahjongg;
 			};
@@ -722,6 +755,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/FlurryLib\"",
+					"\"$(SRCROOT)/GoogleAdMobAdsSDK\"",
 				);
 				PRODUCT_NAME = Mahjongg;
 			};

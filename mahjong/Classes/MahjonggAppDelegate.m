@@ -34,8 +34,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [placeHolderViewController.view addSubview:gameView];
 
         // Setup Ads if NOT Ad Free
-    adManager = [[AdManager alloc] init];
-    [adManager setParentViewController:placeHolderViewController];
+    adManager = [[AdManager alloc] init:placeHolderViewController];
     [adManager setParentView:placeHolderViewController.view andPosition:FALSE];
     
         //[[Director sharedDirector] setLandscape:YES];
