@@ -47,7 +47,7 @@ int mainLayoutArray[10][36] = {
     
 {	0,0,1,1,0,1,
     0,0,1,2,0,0,
-    1,1,3,3,1,1,
+    1,1,1,2,1,1,
     1,1,2,1,1,1,
     0,0,1,1,0,0,
     1,0,1,1,0,0},
@@ -66,20 +66,20 @@ int mainLayoutArray[10][36] = {
 	1,2,1,1,2,1,
 	1,2,2,2,2,1,
 	1,1,1,1,1,1,
-	0,0,0,0,0,0},
+	0,0,1,1,0,0},
 
 
-{   1,1,1,1,1,1,
+{   1,0,0,0,0,1,
 	1,2,2,2,2,1,
 	1,2,3,3,2,1,
 	1,2,2,2,2,1,
 	1,1,1,1,1,1,
-	0,0,0,0,0,0},
+	1,0,0,0,0,1},
 
 {   0,1,0,0,1,0,
-	0,2,2,2,2,0,
+	0,2,3,3,2,0,
 	1,1,2,2,1,1,
-	1,1,2,2,1,1,
+	1,3,2,2,3,1,
 	1,1,1,1,1,1,
 	2,1,0,0,1,2}
 };
@@ -531,7 +531,7 @@ int mainLayoutArray[10][36] = {
 					[manager addChild:tileBoard[i][j][k-1] z:zValue+1];
 					CGPoint center = ccp(firstCenter.x + 27.0f*tileScale*j + layerOffset*(k-1),firstCenter.y - 30.0f*tileScale*i + layerOffset*(k-1));
 					[tileBoard[i][j][k-1] setPosition:center];
-					tileBoard[i][j][k-1]->tileShadow = [[AtlasSprite spriteWithRect:CGRectMake(0,360,27,30) spriteManager:manager] retain];
+					tileBoard[i][j][k-1]->tileShadow = [[AtlasSprite spriteWithRect:CGRectMake(0,720,54,60) spriteManager:manager] retain];
 					[tileBoard[i][j][k-1]->tileShadow setPosition:ccp(center.x+4,center.y+4)];
 					[manager addChild:tileBoard[i][j][k-1]->tileShadow z:zValue];
 					

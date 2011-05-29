@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		50C602AC1391906C007FE9CD /* mahjong.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C602AB1391906C007FE9CD /* mahjong.png */; };
 		59C17F0B138F7DF500B4D1B5 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0A138F7DF500B4D1B5 /* libGoogleAdMobAds.a */; };
 		59C17F0D138F7E7300B4D1B5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0C138F7E7300B4D1B5 /* MessageUI.framework */; };
 		59C17F0F138F7E7D00B4D1B5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0E138F7E7D00B4D1B5 /* SystemConfiguration.framework */; };
@@ -107,6 +108,7 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mahjongg_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mahjongg_Prefix.pch; sourceTree = "<group>"; };
+		50C602AB1391906C007FE9CD /* mahjong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mahjong.png; path = Assets/mahjong.png; sourceTree = "<group>"; };
 		59C17F04138F7DF500B4D1B5 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
 		59C17F05138F7DF500B4D1B5 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
 		59C17F06138F7DF500B4D1B5 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				50C602AB1391906C007FE9CD /* mahjong.png */,
 				D983F9E3106D73880060C946 /* blocks.png */,
 				D983F9B5106D69D40060C946 /* Default.png */,
 				D983F9B3106D69C10060C946 /* Icon.png */,
@@ -631,6 +634,7 @@
 				D983F9B4106D69C10060C946 /* Icon.png in Resources */,
 				D983F9B6106D69D40060C946 /* Default.png in Resources */,
 				D983F9E4106D73880060C946 /* blocks.png in Resources */,
+				50C602AC1391906C007FE9CD /* mahjong.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
