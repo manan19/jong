@@ -10,12 +10,12 @@
 
 int mainLayoutArray[10][36] = {
     
-{	0,1,1,1,1,0,
+{	0,0,1,1,0,0,
+    0,0,1,1,0,0,
+    1,1,0,0,1,1,
+    1,1,0,0,1,1,
     1,1,1,1,1,1,
-    1,1,0,0,1,1,
-    1,1,0,0,1,1,
-    1,1,0,0,1,1,
-    0,1,1,1,1,0},
+    0,0,1,1,0,0},
     
 {	0,1,1,1,1,0,
     1,1,1,1,1,1,
@@ -115,10 +115,11 @@ int mainLayoutArray[10][36] = {
 
 	if ((self = [super init]))
 	{
-		Sprite* backGroundImage = [Sprite spriteWithFile:@"Bub.png"];
-		[backGroundImage setPosition:ccp(160,240)];
-		[self addChild:backGroundImage z:0];
-		[self addChild:[BackgroundLayer node] z:0 tag:0];
+		//Sprite* backGroundImage = [Sprite spriteWithFile:@"Bub.png"];
+		//[backGroundImage setPosition:ccp(160,240)];
+		//[self addChild:backGroundImage z:0];
+		//[self addChild:[BackgroundLayer node] z:0 tag:0];
+        [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0 tag:0];
 		
 	}
 	return self;
@@ -145,7 +146,7 @@ int mainLayoutArray[10][36] = {
 		roundScore[1] = 1200;
 		roundScore[2] = 1800;
 		timerScheduler = FALSE;
-		manager = [AtlasSpriteManager spriteManagerWithFile:@"tiles.png" capacity:144];
+		manager = [AtlasSpriteManager spriteManagerWithFile:@"mahjong.png" capacity:144];
 		timerSprites = [AtlasSpriteManager spriteManagerWithFile:@"timer.png" capacity:25];
 		
 		[self addChild: manager z:0];
@@ -199,7 +200,7 @@ int mainLayoutArray[10][36] = {
 		[timerSprites addChild:timerBar z:0];
 		
 		
-		[self readyScreen:0];		
+		//[self readyScreen:0];		
 	}
 	return self;
 }
@@ -268,7 +269,7 @@ int mainLayoutArray[10][36] = {
 {
 	[self setIsTouchEnabled:FALSE];
 	[[Director sharedDirector] pause];
-	[self addChild:[PauseLayer node] z:1 tag:1];
+	[self addChild:[[[PauseLayer alloc] initWithColor:ccc4(0, 0, 0,255)] autorelease] z:1 tag:1];
 }
 
 -(void)timerFunc
@@ -299,18 +300,20 @@ int mainLayoutArray[10][36] = {
 
 -(void) readyScreen:(int) roundNumber
 {
-	NSString* str = [NSString stringWithFormat:@"Ready Round %d",(roundNumber+1)];
+	/*NSString* str = [NSString stringWithFormat:@"Ready Round %d",(roundNumber+1)];
 	readyLabel = [Label labelWithString:str fontName:@"Arial" fontSize:30];
 	[readyLabel setPosition:ccp(160,240)];
 	[self addChild:readyLabel z:0];
 	currentLayoutIndex = roundNumber;
-	[self schedule:@selector(beginRoundFunc) interval:3];
+	[self schedule:@selector(beginRoundFunc) interval:3];*/
+    currentLayoutIndex = roundNumber;
+    [self beginRoundFunc];
 }
 
 -(void)beginRoundFunc
 {
-	[self removeChild:readyLabel cleanup:YES];
-	[self unschedule:@selector(beginRoundFunc)];
+	//[self removeChild:readyLabel cleanup:YES];
+	//[self unschedule:@selector(beginRoundFunc)];
 	[self initGame];		
 }
 
@@ -527,7 +530,8 @@ int mainLayoutArray[10][36] = {
 							break;
 					}
 					
-					tileBoard[i][j][k-1] = [tileSprite spriteWithRect:CGRectMake(27*(index%12), (30*(index/12)), 27, 30) spriteManager:manager];
+                    
+					tileBoard[i][j][k-1] = [tileSprite spriteWithRect:CGRectMake(54*(index%12), (60*(index/12)), 54, 60) spriteManager:manager];
 					[manager addChild:tileBoard[i][j][k-1] z:zValue+1];
 					CGPoint center = ccp(firstCenter.x + 27.0f*tileScale*j + layerOffset*(k-1),firstCenter.y - 30.0f*tileScale*i + layerOffset*(k-1));
 					[tileBoard[i][j][k-1] setPosition:center];
@@ -537,8 +541,8 @@ int mainLayoutArray[10][36] = {
 					
 					
 					[tileBoard[i][j][k-1] setProperties:index/4 :ccp(center.x -13.5f*tileScale,center.y+15*tileScale) :enable :TRUE :i :j :k-1];
-					[tileBoard[i][j][k-1] setScale:tileScale];
-					[tileBoard[i][j][k-1]->tileShadow setScale:tileScale];
+					[tileBoard[i][j][k-1] setScale:tileScale/2];
+					[tileBoard[i][j][k-1]->tileShadow setScale:tileScale/2];
 					count++;
 					zValue+=2;
 				}
@@ -891,15 +895,16 @@ int mainLayoutArray[10][36] = {
 @end
 
 @implementation PauseLayer
--(id) init
+- (id) initWithColor:(ccColor4B)color
 {
-	if (self == [super init])
+	if (self == [super initWithColor:color])
 	{
-		Sprite* bg = [Sprite spriteWithFile:@"Bub.png"];
-		[bg setPosition:ccp(160,240)];
+		//Sprite* bg = [Sprite spriteWithFile:@"Bub.png"];
+		//[bg setPosition:ccp(160,240)];
         
-		[self addChild:bg];
+		//[self addChild:bg];
 		MenuItem *resumeButton = [MenuItemFont itemFromString:@"Resume" target:self selector:@selector(onResume:)];
+        MenuItem *puzzleSelectButton = [MenuItemFont itemFromString:@"Puzzle Select Menu" target:self selector:@selector(onPuzzleSelect:)];
 		MenuItemToggle *sound; 
 		if (soundOn)
 		{
@@ -910,7 +915,7 @@ int mainLayoutArray[10][36] = {
 			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"SoundOff"],[MenuItemFont itemFromString: @"SoundOn"],nil];
 		}
 
-		Menu* menu = [Menu menuWithItems:resumeButton,sound,nil];
+		Menu* menu = [Menu menuWithItems:resumeButton,sound,puzzleSelectButton,nil];
 		[menu alignItemsVerticallyWithPadding:10];
 		[menu setPosition:ccp(160,240)];
 		[self addChild:menu z:0];
@@ -918,7 +923,15 @@ int mainLayoutArray[10][36] = {
 	return self;
 }
 
-
+-(void)onPuzzleSelect:(id)sender
+{
+	[self removeAllChildrenWithCleanup:YES];
+	Layer* backGroundLayer = (Layer*)[self parent];
+	[backGroundLayer removeChild:self cleanup:YES];
+	[[backGroundLayer parent] addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0 tag:0];
+    [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
+	[[Director sharedDirector] resume];
+}
 
 -(void)onResume:(id)sender
 {
@@ -932,6 +945,72 @@ int mainLayoutArray[10][36] = {
 -(void)onSound:(id)sender
 {
 	soundOn =!soundOn;
+}
+
+
+
+@end
+
+@implementation LevelSelectLayer
+
+- (id) initWithColor:(ccColor4B)color
+{
+    if ((self = [super initWithColor:color]))
+    {
+     
+        [MenuItemFont setFontSize:20];
+        MenuItem *levelButton1 = [MenuItemFont itemFromString:@"Puzzle 1" target:self selector:@selector(onLevelSelect:)];
+        [levelButton1 setTag:1];
+        MenuItem *levelButton2 = [MenuItemFont itemFromString:@"Puzzle 2" target:self selector:@selector(onLevelSelect:)];
+        [levelButton2 setTag:2];
+        MenuItem *levelButton3 = [MenuItemFont itemFromString:@"Puzzle 3" target:self selector:@selector(onLevelSelect:)];
+        [levelButton3 setTag:3];
+        MenuItem *levelButton4 = [MenuItemFont itemFromString:@"Puzzle 4" target:self selector:@selector(onLevelSelect:)];
+        [levelButton4 setTag:4];
+        MenuItem *levelButton5 = [MenuItemFont itemFromString:@"Puzzle 5" target:self selector:@selector(onLevelSelect:)];
+        [levelButton5 setTag:5];
+        MenuItem *levelButton6 = [MenuItemFont itemFromString:@"Puzzle 6" target:self selector:@selector(onLevelSelect:)];
+        [levelButton6 setTag:6];
+        MenuItem *levelButton7 = [MenuItemFont itemFromString:@"Puzzle 7" target:self selector:@selector(onLevelSelect:)];
+        [levelButton7 setTag:7];
+        MenuItem *levelButton8 = [MenuItemFont itemFromString:@"Puzzle 8" target:self selector:@selector(onLevelSelect:)];
+        [levelButton8 setTag:8];
+        MenuItem *levelButton9 = [MenuItemFont itemFromString:@"Puzzle 9" target:self selector:@selector(onLevelSelect:)];
+        [levelButton9 setTag:9];
+        MenuItem *levelButton10 = [MenuItemFont itemFromString:@"Puzzle 10" target:self selector:@selector(onLevelSelect:)];
+        [levelButton10 setTag:10];
+		
+		
+		Menu* menu = [Menu menuWithItems:levelButton1,levelButton2,levelButton3,levelButton4,levelButton5,levelButton6,levelButton7,levelButton8,levelButton9,levelButton10,nil];
+		[menu alignItemsVerticallyWithPadding:4];
+		[menu setPosition:ccp(160,260)];
+		[self addChild:menu z:0];
+        
+        
+        MenuItem* backButton = [MenuItemFont itemFromString:@"MainMenu" target:self selector:@selector(onBack:)];
+        Menu* backMenu = [Menu menuWithItems:backButton, nil];
+        [backMenu setPosition:ccp(160,30)];
+        [self addChild:backMenu];
+    }
+    return self;
+}
+
+-(void) onBack:(id)sender
+{
+    [self removeAllChildrenWithCleanup:YES];
+    [[self parent] removeChild:self cleanup:YES];
+    [[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[MenuScene node]]];
+}
+
+-(void)onLevelSelect:(id)sender
+{
+    BackgroundLayer* l = [BackgroundLayer node];
+    [[self parent] addChild:l z:0 tag:0];
+    int r = [sender tag];
+    [l readyScreen:r];
+    [self removeAllChildrenWithCleanup:YES];
+    [[self parent] removeChild:self cleanup:YES];
+    
 }
 
 @end

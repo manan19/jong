@@ -20,16 +20,16 @@
 		int score = [prefs integerForKey:@"highscore"];
 		
 		Label* scoreLabel = [Label labelWithString:[NSString stringWithFormat:@"%d",score] fontName:@"Arial" fontSize:25];
-		[scoreLabel setPosition:ccp(240,160)];
+		[scoreLabel setPosition:ccp(160,240)];
 		[self addChild:scoreLabel z:2];
 		
 		Sprite* backGround = [Sprite spriteWithFile:@"Bub.png"];
-		[backGround setPosition:ccp(240,160)];
+		[backGround setPosition:ccp(160,240)];
 		[self addChild:backGround z:1];
 		[MenuItemFont setFontSize:25]; 
 		MenuItem *back = [MenuItemFont itemFromString:@"Back"  target:self selector:@selector(onBack:)];
 		Menu *menu = [Menu menuWithItems:back,nil];
-        [menu setPosition:ccp(420,30)];
+        [menu setPosition:ccp(280,30)];
         [self addChild:menu z:2];
 		
 	}

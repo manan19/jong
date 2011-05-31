@@ -76,23 +76,29 @@
 	BOOL enableTouch,endGame;
 }
 
-
-
 -(void) checkWhichTileSelected:(CGPoint)currentPoint; 
 -(void) checkIfMatch:(tileSprite*)currentTile;
 -(void) ridTile:(tileSprite*)currentTile;
 -(void) initGame;
 -(void) readyScreen:(int)roundNumber;
 -(void) gameFinished :(int)parameter;
+-(void) beginRoundFunc;
 
 
 @end
 
-@interface PauseLayer : Layer
+@interface PauseLayer : ColorLayer
 {	
 }
 @end
 
+@interface LevelSelectLayer : ColorLayer 
+{
+    
+    
+}
+
+@end
 
 
 
