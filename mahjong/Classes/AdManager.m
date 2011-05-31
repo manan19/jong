@@ -87,6 +87,8 @@
 	[_adView release];
     [_parentViewController release];
     [_parentView release];
+    [countryCode release];
+
 	[super dealloc];
 }
 
