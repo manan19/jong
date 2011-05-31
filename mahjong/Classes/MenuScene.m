@@ -10,6 +10,7 @@
 #import "MenuScene.h"
 #import "PlayScene.h"
 #import "HighScoreScene.h"
+#import "MahjonggAppDelegate.h"
 
 @implementation MenuScene
 -(id) init
@@ -52,8 +53,7 @@
 }
 -(void)onHighScore: (id)sender
 {
-	[[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[HighScoreScene node]]];
-		
+	[(MahjonggAppDelegate*)[[UIApplication sharedApplication] delegate] showLeaderboard];
 }
 
 @end

@@ -29,10 +29,16 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     placeHolderViewController = [[UIViewController alloc] init];
     [window addSubview:placeHolderViewController.view];
-
+    
     gameView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     [placeHolderViewController.view addSubview:gameView];
 
+        // Setup for high scores
+	scoreManager = [[ScoreManager alloc] init];
+	[scoreManager readBestTimes];
+    leaderboardController = [[GKLeaderboardViewController alloc] init];
+    //[scoreManager newScore:10 forLevel:1 sendToGC:TRUE];
+    
         // Setup Ads if NOT Ad Free
     adManager = [[AdManager alloc] init:placeHolderViewController];
     [adManager setParentView:placeHolderViewController.view andPosition:FALSE];
@@ -66,10 +72,26 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
 }
 
+- (void) showLeaderboard
+{
+    if (leaderboardController != nil)
+    {
+        leaderboardController.leaderboardDelegate = self;
+        [placeHolderViewController presentModalViewController: leaderboardController animated: YES];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    [placeHolderViewController dismissModalViewControllerAnimated:YES];
+}
+
 - (void)dealloc {
     [adManager release];
     [gameView release];
     [placeHolderViewController release];
+    [scoreManager release];
+    [leaderboardController release];
 	[window release];
     [super dealloc];
 }

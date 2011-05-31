@@ -19,6 +19,8 @@
 		59F14B54138F63B100789999 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F14B53138F63B100789999 /* libFlurry.a */; };
 		59F14B58138F644E00789999 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F14B57138F644E00789999 /* AdManager.m */; };
 		59F14B5A138F64E600789999 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F14B59138F64E600789999 /* iAd.framework */; };
+		59FB38961392F99100611566 /* ScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FB38951392F99100611566 /* ScoreManager.m */; };
+		59FB38991392FAC800611566 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FB38981392FAC800611566 /* GameKit.framework */; };
 		6E6E10820FC0AA9200E5CA7B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6E10800FC0AA9200E5CA7B /* OpenGLES.framework */; };
 		6E6E10830FC0AA9200E5CA7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6E10810FC0AA9200E5CA7B /* QuartzCore.framework */; };
 		84098C0E1067564B008A96D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84098C0D1067564B008A96D7 /* AudioToolbox.framework */; };
@@ -123,6 +125,9 @@
 		59F14B56138F644E00789999 /* AdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
 		59F14B57138F644E00789999 /* AdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
 		59F14B59138F64E600789999 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		59FB38941392F99100611566 /* ScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManager.h; sourceTree = "<group>"; };
+		59FB38951392F99100611566 /* ScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreManager.m; sourceTree = "<group>"; };
+		59FB38981392FAC800611566 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5A512F82105F7E2B00AD0ABC /* vorbis.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vorbis.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E6E10800FC0AA9200E5CA7B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		6E6E10810FC0AA9200E5CA7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -275,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59FB38991392FAC800611566 /* GameKit.framework in Frameworks */,
 				59C17F0F138F7E7D00B4D1B5 /* SystemConfiguration.framework in Frameworks */,
 				59C17F0D138F7E7300B4D1B5 /* MessageUI.framework in Frameworks */,
 				59F14B5A138F64E600789999 /* iAd.framework in Frameworks */,
@@ -311,6 +317,8 @@
 				1D3623250D0F684500981E51 /* MahjonggAppDelegate.m */,
 				59F14B56138F644E00789999 /* AdManager.h */,
 				59F14B57138F644E00789999 /* AdManager.m */,
+				59FB38941392F99100611566 /* ScoreManager.h */,
+				59FB38951392F99100611566 /* ScoreManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -327,6 +335,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				59FB38981392FAC800611566 /* GameKit.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -714,6 +723,7 @@
 				D97A6E48106CD32B000D1D57 /* TouchHandler.m in Sources */,
 				D97A6E49106CD32B000D1D57 /* Transition.m in Sources */,
 				59F14B58138F644E00789999 /* AdManager.m in Sources */,
+				59FB38961392F99100611566 /* ScoreManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
