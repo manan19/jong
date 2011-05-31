@@ -36,7 +36,14 @@ void uncaughtExceptionHandler(NSException *exception) {
         // Setup for high scores
 	scoreManager = [[ScoreManager alloc] init];
 	[scoreManager readBestTimes];
-    leaderboardController = [[GKLeaderboardViewController alloc] init];
+    if([scoreManager _isGameCenterAvailable])
+    {
+        leaderboardController = [[GKLeaderboardViewController alloc] init];
+    }
+    else
+    {
+        //[gameCenterButton removeFromSuperview];
+    }
     //[scoreManager newScore:10 forLevel:1 sendToGC:TRUE];
     
         // Setup Ads if NOT Ad Free
