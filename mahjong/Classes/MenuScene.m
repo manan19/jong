@@ -9,7 +9,6 @@
 
 #import "MenuScene.h"
 #import "PlayScene.h"
-#import "HighScoreScene.h"
 #import "MahjonggAppDelegate.h"
 
 @implementation MenuScene

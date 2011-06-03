@@ -58,7 +58,7 @@
 	int numCols,numRows,numLayers,numTiles,numTrials,tileCount,currentLayoutIndex;
 	float timex;
     Label* timeLabel;
-	int timeCount;
+	float timeCount;
 	int gameScore;
 	Menu *menu;
 	SystemSoundID shortSound;
@@ -88,7 +88,7 @@
 }
 @end
 
-@interface LevelSelectLayer : ColorLayer 
+@interface LevelSelectLayer : Layer 
 {
     
     

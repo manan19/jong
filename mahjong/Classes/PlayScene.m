@@ -7,6 +7,7 @@
 //
 
 #import "PlayScene.h"
+#import "MahjonggAppDelegate.h"
 
 int mainLayoutArray[10][36] = {
     
@@ -181,7 +182,7 @@ int mainLayoutArray[10][36] = {
 		[self addChild:takeScoreMenu];*/
         
         timeLabel = [Label labelWithString:[NSString stringWithFormat: @"Time: %d",timeCount] fontName:@"Arial" fontSize:16];
-		[timeLabel setPosition:ccp(280,450)];
+		[timeLabel setPosition:ccp(250,450)];
 		[timeLabel setVisible:NO];
 		[self addChild:timeLabel z:0];
 		
@@ -228,8 +229,8 @@ int mainLayoutArray[10][36] = {
 
 -(void)getTime
 {
-    timeCount++;
-    [timeLabel setString:[NSString stringWithFormat:@"Time: %d",timeCount]];
+    timeCount+=0.03f;
+    [timeLabel setString:[NSString stringWithFormat:@"Time: %.2f",timeCount]];
 }
 
 -(void) initGame
@@ -237,7 +238,7 @@ int mainLayoutArray[10][36] = {
 	[menu setVisible:YES];
     [timeLabel setVisible:YES];
 		
-    [self schedule:@selector(getTime) interval:1.0f];
+    [self schedule:@selector(getTime) interval:0.03f];
     
 	if (soundOn)
 	{
@@ -710,16 +711,8 @@ int mainLayoutArray[10][36] = {
 		[self addChild:lessScore z:1];
 	}
 	
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	int currentHighScore = [prefs integerForKey:[NSString stringWithFormat:@"highscore_%d",currentLayoutIndex]];
-	if (currentHighScore > timeCount)
-	{
-		[prefs setInteger:timeCount forKey:[NSString stringWithFormat:@"highscore_%d",currentLayoutIndex]];
-        Label* lessScore = [Label labelWithString:@"New Best Time" fontName:@"Arial" fontSize:25];
-		[lessScore setPosition:ccp(160,220)];
-		[self addChild:lessScore z:1];
-	}
-	
+	[[(MahjonggAppDelegate*)[[UIApplication sharedApplication] delegate]getScoreMananger] newScore:timeCount forLevel:currentLayoutIndex sendToGC:YES];
+    
 	endGame = YES; 
 }
 
@@ -786,7 +779,7 @@ int mainLayoutArray[10][36] = {
 
 - (id) initWithColor:(ccColor4B)color
 {
-    if ((self = [super initWithColor:color]))
+    if ((self = [super init]))
     {
      
         [MenuItemFont setFontSize:20];
@@ -838,7 +831,7 @@ int mainLayoutArray[10][36] = {
     BackgroundLayer* l = [BackgroundLayer node];
     [[self parent] addChild:l z:0 tag:0];
     int r = [sender tag];
-    [l readyScreen:r];
+    [l readyScreen:r-1];
     [self removeAllChildrenWithCleanup:YES];
     [[self parent] removeChild:self cleanup:YES];
     
