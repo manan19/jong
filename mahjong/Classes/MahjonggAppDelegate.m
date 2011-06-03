@@ -79,6 +79,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
 }
 
+- (ScoreManager*) getScoreMananger
+{
+    return scoreManager;
+}
+
 - (void) showLeaderboard
 {
     if (leaderboardController != nil)

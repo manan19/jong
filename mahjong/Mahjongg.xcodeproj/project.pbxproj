@@ -24,7 +24,6 @@
 		6E6E10820FC0AA9200E5CA7B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6E10800FC0AA9200E5CA7B /* OpenGLES.framework */; };
 		6E6E10830FC0AA9200E5CA7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6E10810FC0AA9200E5CA7B /* QuartzCore.framework */; };
 		84098C0E1067564B008A96D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84098C0D1067564B008A96D7 /* AudioToolbox.framework */; };
-		84098CEC10676F2D008A96D7 /* HighScoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84098CEB10676F2D008A96D7 /* HighScoreScene.m */; };
 		D97A6E12106CD32B000D1D57 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A6D9C106CD32B000D1D57 /* Action.m */; };
 		D97A6E13106CD32B000D1D57 /* ActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A6D9E106CD32B000D1D57 /* ActionManager.m */; };
 		D97A6E14106CD32B000D1D57 /* AtlasNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D97A6DA0106CD32B000D1D57 /* AtlasNode.m */; };
@@ -133,8 +132,6 @@
 		6E6E10810FC0AA9200E5CA7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		84098BF61067545F008A96D7 /* Mahjongg-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mahjongg-Info.plist"; sourceTree = "<group>"; };
 		84098C0D1067564B008A96D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		84098CEA10676F2D008A96D7 /* HighScoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreScene.h; sourceTree = "<group>"; };
-		84098CEB10676F2D008A96D7 /* HighScoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreScene.m; sourceTree = "<group>"; };
 		D97A6D9B106CD32B000D1D57 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		D97A6D9C106CD32B000D1D57 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		D97A6D9D106CD32B000D1D57 /* ActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionManager.h; sourceTree = "<group>"; };
@@ -558,8 +555,6 @@
 				E89872B7101EE8B00092A1B7 /* MenuScene.m */,
 				E89872C1101EE8FA0092A1B7 /* PlayScene.h */,
 				E89872C2101EE8FA0092A1B7 /* PlayScene.m */,
-				84098CEA10676F2D008A96D7 /* HighScoreScene.h */,
-				84098CEB10676F2D008A96D7 /* HighScoreScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -665,7 +660,6 @@
 				1D3623260D0F684500981E51 /* MahjonggAppDelegate.m in Sources */,
 				E89872B8101EE8B00092A1B7 /* MenuScene.m in Sources */,
 				E89872C3101EE8FA0092A1B7 /* PlayScene.m in Sources */,
-				84098CEC10676F2D008A96D7 /* HighScoreScene.m in Sources */,
 				D97A6E12106CD32B000D1D57 /* Action.m in Sources */,
 				D97A6E13106CD32B000D1D57 /* ActionManager.m in Sources */,
 				D97A6E14106CD32B000D1D57 /* AtlasNode.m in Sources */,

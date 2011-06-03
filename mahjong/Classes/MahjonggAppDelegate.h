@@ -16,11 +16,12 @@
     UIViewController *placeHolderViewController;
     UIView *gameView;
     AdManager* adManager;
-    ScoreManager* scoreManager;
+    @public ScoreManager* scoreManager;
     GKLeaderboardViewController *leaderboardController;
 }
 
 - (void) showLeaderboard;
+- (ScoreManager*) getScoreMananger;
 
 @end
 
