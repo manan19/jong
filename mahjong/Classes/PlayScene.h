@@ -49,6 +49,7 @@
 
 @interface BackgroundLayer : Layer
 {
+    @public
 	BOOL bonusScheduler,timerScheduler;
 	AtlasSpriteManager* manager;
 	//AtlasSpriteManager* timerSprites;

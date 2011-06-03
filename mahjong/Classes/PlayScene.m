@@ -130,8 +130,14 @@ int mainLayoutArray[10][36] = {
 	[[self getChildByTag:0] removeAllChildrenWithCleanup:YES];
 	//[self removeAllChildrenWithCleanup:YES];
 	//[[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[MenuScene node]]];
-    [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0];
-	
+    [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0];	
+}
+
+-(void) restartGame:(int)index
+{
+    BackgroundLayer* l = [BackgroundLayer node];
+    [self addChild:l z:0 tag:0];
+    [l readyScreen:index];
 }
 
 @end
@@ -209,20 +215,13 @@ int mainLayoutArray[10][36] = {
 
 -(void) readyScreen:(int) roundNumber
 {
-	/*NSString* str = [NSString stringWithFormat:@"Ready Round %d",(roundNumber+1)];
-	readyLabel = [Label labelWithString:str fontName:@"Arial" fontSize:30];
-	[readyLabel setPosition:ccp(160,240)];
-	[self addChild:readyLabel z:0];
-	currentLayoutIndex = roundNumber;
-	[self schedule:@selector(beginRoundFunc) interval:3];*/
     currentLayoutIndex = roundNumber;
     [self beginRoundFunc];
 }
 
 -(void)beginRoundFunc
 {
-	//[self removeChild:readyLabel cleanup:YES];
-	//[self unschedule:@selector(beginRoundFunc)];
+	//[self unschedule:@selector(getTime)];
 	[self initGame];		
 }
 
@@ -736,6 +735,7 @@ int mainLayoutArray[10][36] = {
 		//[self addChild:bg];
 		MenuItem *resumeButton = [MenuItemFont itemFromString:@"Resume" target:self selector:@selector(onResume:)];
         MenuItem *puzzleSelectButton = [MenuItemFont itemFromString:@"Puzzle Select Menu" target:self selector:@selector(onPuzzleSelect:)];
+        
 		MenuItemToggle *sound; 
 		if (soundOn)
 		{
@@ -745,13 +745,24 @@ int mainLayoutArray[10][36] = {
 		{
 			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"SoundOff"],[MenuItemFont itemFromString: @"SoundOn"],nil];
 		}
-
-		Menu* menu = [Menu menuWithItems:resumeButton,sound,puzzleSelectButton,nil];
+        MenuItem* restartButton = [MenuItemFont itemFromString:@"Restart" target:self selector:@selector(onRestartSelect:)];
+        
+		Menu* menu = [Menu menuWithItems:resumeButton,sound,puzzleSelectButton,restartButton,nil];
 		[menu alignItemsVerticallyWithPadding:10];
 		[menu setPosition:ccp(160,240)];
 		[self addChild:menu z:0];
 	}
 	return self;
+}
+
+-(void)onRestartSelect:(id)sender
+{
+    [self removeAllChildrenWithCleanup:YES];
+    BackgroundLayer* backGroundLayer = (BackgroundLayer*)[self parent];
+	[backGroundLayer removeChild:self cleanup:YES];
+    [[backGroundLayer parent] restartGame:backGroundLayer->currentLayoutIndex];
+    [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
+    [[Director sharedDirector] resume];
 }
 
 -(void)onPuzzleSelect:(id)sender
