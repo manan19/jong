@@ -32,11 +32,11 @@
 		}
 		MenuItem *highScore = [MenuItemFont itemFromString:@"HighScore"  target:self selector:@selector(onHighScore:)];
 		Menu *menu = [Menu menuWithItems:start, highScore, sound,nil];
-		Sprite* backGround = [Sprite spriteWithFile:@"Bub.png"];
-        [backGround setPosition:ccp(160,240)];
+		//Sprite* backGround = [Sprite spriteWithFile:@"Bub.png"];
+        //[backGround setPosition:ccp(160,240)];
 		[menu alignItemsVerticallyWithPadding:10];
         [self addChild:menu z:1];
-		[self addChild:backGround z:0];
+		//[self addChild:backGround z:0];
 		
 	}
 	return self;
@@ -44,7 +44,7 @@
 
 -(void)onStartGame: (id)sender
 {
-	[[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[PlayScene node]]];
+    [[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[PlayScene node]]];
 }
 
 -(void)onSound: (id)sender

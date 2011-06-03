@@ -10,12 +10,12 @@
 
 int mainLayoutArray[10][36] = {
     
-{	0,1,1,1,1,0,
+{	0,0,1,1,0,0,
+    0,0,1,1,0,0,
+    1,1,0,0,1,1,
+    1,1,0,0,1,1,
     1,1,1,1,1,1,
-    1,1,0,0,1,1,
-    1,1,0,0,1,1,
-    1,1,0,0,1,1,
-    0,1,1,1,1,0},
+    0,0,1,1,0,0},
     
 {	0,1,1,1,1,0,
     1,1,1,1,1,1,
@@ -115,10 +115,11 @@ int mainLayoutArray[10][36] = {
 
 	if ((self = [super init]))
 	{
-		Sprite* backGroundImage = [Sprite spriteWithFile:@"Bub.png"];
-		[backGroundImage setPosition:ccp(160,240)];
-		[self addChild:backGroundImage z:0];
-		[self addChild:[BackgroundLayer node] z:0 tag:0];
+		//Sprite* backGroundImage = [Sprite spriteWithFile:@"Bub.png"];
+		//[backGroundImage setPosition:ccp(160,240)];
+		//[self addChild:backGroundImage z:0];
+		//[self addChild:[BackgroundLayer node] z:0 tag:0];
+        [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0];
 		
 	}
 	return self;
@@ -128,7 +129,8 @@ int mainLayoutArray[10][36] = {
 {
 	[[self getChildByTag:0] removeAllChildrenWithCleanup:YES];
 	//[self removeAllChildrenWithCleanup:YES];
-	[[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[MenuScene node]]];
+	//[[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[MenuScene node]]];
+    [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0];
 	
 }
 
@@ -145,16 +147,14 @@ int mainLayoutArray[10][36] = {
 		roundScore[1] = 1200;
 		roundScore[2] = 1800;
 		timerScheduler = FALSE;
-		manager = [AtlasSpriteManager spriteManagerWithFile:@"tiles.png" capacity:144];
-		timerSprites = [AtlasSpriteManager spriteManagerWithFile:@"timer.png" capacity:25];
+		manager = [AtlasSpriteManager spriteManagerWithFile:@"mahjong.png" capacity:144];
 		
 		[self addChild: manager z:0];
-		[self addChild:timerSprites z:0];
 		
 		gameScore = 0;
-		timeLeftCount = 0;
 		tileScale = 1.5f;
 		layerOffset = 7.0f;
+        timeCount = 0;
 		
 		for (int i=0;i < 10;i++)
 		{
@@ -167,14 +167,8 @@ int mainLayoutArray[10][36] = {
 		[self setIsTouchEnabled:YES];
 		enableTouch = FALSE;
 		
-		bonusLabel = [Sprite spriteWithFile:@"blocks.png"];
-		[bonusLabel setPosition:ccp(160,240)];
-		[bonusLabel setOpacity:127];
-		[bonusLabel setVisible:FALSE];
-		[self addChild:bonusLabel z:2];
-		
 		[MenuItemFont setFontSize:19];
-		MenuItem *pauseButton = [MenuItemFont itemFromString:@"Pause Game" target:self  selector:@selector(onPauseGame:)];
+		MenuItem *pauseButton = [MenuItemFont itemFromString:@"Options" target:self  selector:@selector(onPauseGame:)];
 		menu = [Menu menuWithItems:pauseButton,nil];
 		[menu setPosition:ccp(60,450)];
 		[menu setVisible:NO];
@@ -185,165 +179,66 @@ int mainLayoutArray[10][36] = {
 		[takeScoreMenu setPosition:ccp(50,290)];
 		[takeScoreMenu setVisible:NO];
 		[self addChild:takeScoreMenu];*/
+        
+        timeLabel = [Label labelWithString:[NSString stringWithFormat: @"Time: %d",timeCount] fontName:@"Arial" fontSize:16];
+		[timeLabel setPosition:ccp(280,450)];
+		[timeLabel setVisible:NO];
+		[self addChild:timeLabel z:0];
+		
+//		timerBar = [AtlasSprite spriteWithRect:CGRectMake(0,0, 148, 11) spriteManager:timerSprites];
+//		[timerBar setPosition:ccp(220,450)];
+//		[timerBar setScale:1.0f];
+//		[timerBar setVisible:NO];
+//		[timerSprites addChild:timerBar z:0];
 		
 		
-		scoreLabel = [Label labelWithString:[NSString stringWithFormat: @"%d",gameScore] fontName:@"Arial" fontSize:16];
-		[scoreLabel setPosition:ccp(20,80)];
-		[scoreLabel setVisible:NO];
-		[self addChild:scoreLabel z:0];
-		
-		timerBar = [AtlasSprite spriteWithRect:CGRectMake(0,0, 148, 11) spriteManager:timerSprites];
-		[timerBar setPosition:ccp(220,450)];
-		[timerBar setScale:1.0f];
-		[timerBar setVisible:NO];
-		[timerSprites addChild:timerBar z:0];
-		
-		
-		[self readyScreen:0];		
+		//[self readyScreen:0];		
 	}
 	return self;
 }
 
-
--(void)onTakeScore
-{
-	enableTouch = FALSE;
-	//[self setIsTouchEnabled:NO];
-	int stackCount = 0;
-	for (int i=0;i<numRows;i++)
-	{
-		for (int j=0;j<numCols;j++)
-		{
-			for (int k=0;k<mainLayoutArray[currentLayoutIndex][stackCount];k++)
-			{
-				if (tileBoard[i][j][k]->isRendered)
-				{
-					tileBoard[i][j][k]->isEnabled = FALSE;
-					tileBoard[i][j][k]->isRendered = FALSE;
-					[manager removeChild:tileBoard[i][j][k]->tileShadow cleanup:YES];
-					[manager removeChild:tileBoard[i][j][k] cleanup:YES];
-				}
-			}
-			stackCount++;
-		}
-	}
-	
-	currentLayoutIndex++;
-	/*[timerSprites removeChild:timerBar cleanup:YES];
-	[self removeChild:menu cleanup:YES];
-	[self removeChild:scoreLabel cleanup:YES];
-	[self removeChild:bonusLabel cleanup:YES];
-	[self removeChild:takeScoreMenu cleanup:YES];*/
-	
-	[timerBar setVisible:NO];
-	[menu setVisible:NO];
-	[scoreLabel setVisible:NO];
-	[bonusLabel setVisible:NO];
-	//[takeScoreMenu setVisible:NO];
-	
-	[self unschedule:@selector(timerFunc)];
-	[self unschedule:@selector(flashBonus)];
-	
-	if (currentLayoutIndex < numberOfGames)
-	{
-		if (gameScore >= roundScore[(currentLayoutIndex-1)])
-		{
-			
-			[self readyScreen:currentLayoutIndex];
-		}
-		else 
-		{
-			[self gameFinished :2];
-		}
-
-	}
-	else
-	{
-		[self gameFinished:0];
-	}
-}
 
 
 -(void)onPauseGame:(id)sender
 {
 	[self setIsTouchEnabled:FALSE];
 	[[Director sharedDirector] pause];
-	[self addChild:[PauseLayer node] z:1 tag:1];
+	[self addChild:[[[PauseLayer alloc] initWithColor:ccc4(0, 0, 0,255)] autorelease] z:1 tag:1];
 }
 
--(void)timerFunc
-{
-	timex+=6;
-	
-	if (timeLeftCount >= 0);
-		timeLeftCount--;
-	if (timex <=148)
-	{
-		[timerBar setTextureRect:CGRectMake(0,0,148-timex,11)];
-		[timerBar setPosition:ccp(220-(timex/2),450)];
-	}
-	else
-	{
-		readyLabel = [Label labelWithString:@"Time Over" fontName:@"Arial" fontSize:30];
-		[readyLabel setPosition:ccp(160,380)];
-		[self addChild:readyLabel z:1];
-		[timerSprites removeChild:timerBar cleanup:YES];
-		/*if(timerScheduler)
-		{
-			[self unschedule:@selector(timerFunc)];
-			timerScheduler = FALSE;
-		}*/
-		[self gameFinished:1];
-	}
-}
 
 -(void) readyScreen:(int) roundNumber
 {
-	NSString* str = [NSString stringWithFormat:@"Ready Round %d",(roundNumber+1)];
+	/*NSString* str = [NSString stringWithFormat:@"Ready Round %d",(roundNumber+1)];
 	readyLabel = [Label labelWithString:str fontName:@"Arial" fontSize:30];
 	[readyLabel setPosition:ccp(160,240)];
 	[self addChild:readyLabel z:0];
 	currentLayoutIndex = roundNumber;
-	[self schedule:@selector(beginRoundFunc) interval:3];
+	[self schedule:@selector(beginRoundFunc) interval:3];*/
+    currentLayoutIndex = roundNumber;
+    [self beginRoundFunc];
 }
 
 -(void)beginRoundFunc
 {
-	[self removeChild:readyLabel cleanup:YES];
-	[self unschedule:@selector(beginRoundFunc)];
+	//[self removeChild:readyLabel cleanup:YES];
+	//[self unschedule:@selector(beginRoundFunc)];
 	[self initGame];		
 }
 
--(void)flashBonus
+-(void)getTime
 {
-	if (bonusScheduler)
-	{
-		bonusFlashCount++;
-		if (bonusFlashCount%2 == 1)
-		{
-			[bonusLabel setVisible:NO];
-		}
-		else
-		{
-			[bonusLabel setVisible:YES];
-		}
-	
-		if (bonusFlashCount >= 7)
-		{
-			bonusFlashCount = 0;
-			bonusScheduler = FALSE;
-		}
-	}
-
+    timeCount++;
+    [timeLabel setString:[NSString stringWithFormat:@"Time: %d",timeCount]];
 }
 
 -(void) initGame
 {	
-	[timerBar setVisible:YES];
 	[menu setVisible:YES];
-	[scoreLabel setVisible:YES];
-	//[takeScoreMenu setVisible:YES];
+    [timeLabel setVisible:YES];
 		
+    [self schedule:@selector(getTime) interval:1.0f];
+    
 	if (soundOn)
 	{
 		audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"opener" ofType:@"wav"]]; 
@@ -363,12 +258,8 @@ int mainLayoutArray[10][36] = {
 	}
 	
 	timex = 0;
-	bonusCounter = 0;
-		
-	timeLeftCount = 25;
-	
-	//[self schedule:@selector(timerFunc) interval:1];
-	//[self schedule:@selector(flashBonus) interval:.3f];
+	timeCount = 0;
+
 	bonusScheduler = FALSE;
 	timerScheduler = TRUE;
 	previousTile = NULL;
@@ -527,7 +418,8 @@ int mainLayoutArray[10][36] = {
 							break;
 					}
 					
-					tileBoard[i][j][k-1] = [tileSprite spriteWithRect:CGRectMake(27*(index%12), (30*(index/12)), 27, 30) spriteManager:manager];
+                    
+					tileBoard[i][j][k-1] = [tileSprite spriteWithRect:CGRectMake(54*(index%12), (60*(index/12)), 54, 60) spriteManager:manager];
 					[manager addChild:tileBoard[i][j][k-1] z:zValue+1];
 					CGPoint center = ccp(firstCenter.x + 27.0f*tileScale*j + layerOffset*(k-1),firstCenter.y - 30.0f*tileScale*i + layerOffset*(k-1));
 					[tileBoard[i][j][k-1] setPosition:center];
@@ -537,8 +429,8 @@ int mainLayoutArray[10][36] = {
 					
 					
 					[tileBoard[i][j][k-1] setProperties:index/4 :ccp(center.x -13.5f*tileScale,center.y+15*tileScale) :enable :TRUE :i :j :k-1];
-					[tileBoard[i][j][k-1] setScale:tileScale];
-					[tileBoard[i][j][k-1]->tileShadow setScale:tileScale];
+					[tileBoard[i][j][k-1] setScale:tileScale/2];
+					[tileBoard[i][j][k-1]->tileShadow setScale:tileScale/2];
 					count++;
 					zValue+=2;
 				}
@@ -667,24 +559,12 @@ int mainLayoutArray[10][36] = {
 		
 		[previousTile setColor:ccc3(Col.r, Col.g-127, Col.b-127)];
 		previousTile = NULL;
-		bonusCounter = 0;
 		
 		return;
 	}
 	
 	if (previousTile->tileID == currentTile->tileID)
 	{
-		bonusCounter++;
-		timex = 0;
-		[timerBar setTextureRect:CGRectMake(0,0,148-timex,11)];
-		[timerBar setPosition:ccp(220,450)];
-		[timerBar setScale:1.0f];
-		
-		gameScore += 4*timeLeftCount;
-		timeLeftCount = 25;
-	
-		
-		
 		if (soundOn)
 		{
 			audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"removeTile" ofType:@"wav"]]; 
@@ -716,60 +596,26 @@ int mainLayoutArray[10][36] = {
 		
 		previousTile = NULL;
 		tileCount-=2;
-
-		if (bonusCounter >= 3)
-		{
-			//[self schedule:@selector(flashBonus) interval:.3f];
-			bonusScheduler = TRUE;
-			bonusFlashCount = 0;
-			bonusCounter = 0;
-			gameScore+=20;
-		}
-		
-		NSString* scr = [NSString stringWithFormat:@"%d",gameScore];
-		[scoreLabel setString:scr];
-		
+        
 		if (tileCount == 0)
 		{
 			enableTouch = FALSE;
 			//[self setIsTouchEnabled:FALSE];
 			currentLayoutIndex++;
-			[timerBar setVisible:NO];
+			
 			[menu setVisible:NO];
-			[scoreLabel setVisible:NO];
-			[bonusLabel setVisible:NO];
+			[timeLabel setVisible:NO];
 			//[takeScoreMenu setVisible:NO];
 			
-			[self unschedule:@selector(timerFunc)];
 			tileCount = 0;
 			
-			[self unschedule:@selector(flashBonus)];
-
-			bonusFlashCount = 0;
-			
-			if (currentLayoutIndex < numberOfGames)
-			{
-				if (gameScore >= roundScore[(currentLayoutIndex-1)])
-				{
-					
-					[self readyScreen:currentLayoutIndex];
-				}
-				else 
-				{
-					[self gameFinished:2];
-				}
-			}
-			else
-			{
-				[self gameFinished:0];
- 			}
-			
+			[self unschedule:@selector(getTime)];
+            [self gameFinished];
 		}
 		
 	}
 	else
 	{
-		bonusCounter = 0;
 		if (soundOn)
 		{
 			audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"error" ofType:@"wav"]]; 
@@ -849,40 +695,29 @@ int mainLayoutArray[10][36] = {
 		
 }
 
--(void) gameFinished :(int)parameter
+-(void) gameFinished
 {
-	NSString* str = [NSString stringWithFormat:@"Your Score = %d",gameScore];
-	if (timerScheduler)
 	{
-		[self unschedule:@selector(timerFunc)];
-		[self unschedule:@selector(flashBonus)];
-	}
-	[timerSprites removeChild:timerBar cleanup:YES];
-	
-	if (parameter == 1)
-	{
-		Label* time = [Label labelWithString:@"Time Over" fontName:@"Arial" fontSize:30];
-		[time setPosition:ccp(160,220)];
+		Label* time = [Label labelWithString:@"Puzzle Complete" fontName:@"Arial" fontSize:30];
+		[time setPosition:ccp(160,300)];
 		[self addChild:time z:1];
 	}
 	
-	if (parameter == 2)
+	
 	{
-		NSLog(@"start add");
-		Label* lessScore = [Label labelWithString:@"Insufficient Score" fontName:@"Arial" fontSize:30];
-		[lessScore setPosition:ccp(160,220)];
+		Label* lessScore = [Label labelWithString:@"Tap to continue" fontName:@"Arial" fontSize:20];
+		[lessScore setPosition:ccp(160,120)];
 		[self addChild:lessScore z:1];
 	}
 	
-	gameOverLabel = [Label labelWithString:str fontName:@"Arial" fontSize:25];
-	[gameOverLabel setPosition:ccp(160,160)];
-	[self addChild:gameOverLabel z:0];
-	
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	int currentHighScore = [prefs integerForKey:@"highscore"];
-	if (currentHighScore < gameScore)
+	int currentHighScore = [prefs integerForKey:[NSString stringWithFormat:@"highscore_%d",currentLayoutIndex]];
+	if (currentHighScore > timeCount)
 	{
-		[prefs setInteger:gameScore forKey:@"highscore"];
+		[prefs setInteger:timeCount forKey:[NSString stringWithFormat:@"highscore_%d",currentLayoutIndex]];
+        Label* lessScore = [Label labelWithString:@"New Best Time" fontName:@"Arial" fontSize:25];
+		[lessScore setPosition:ccp(160,220)];
+		[self addChild:lessScore z:1];
 	}
 	
 	endGame = YES; 
@@ -891,15 +726,16 @@ int mainLayoutArray[10][36] = {
 @end
 
 @implementation PauseLayer
--(id) init
+- (id) initWithColor:(ccColor4B)color
 {
-	if (self == [super init])
+	if (self == [super initWithColor:color])
 	{
-		Sprite* bg = [Sprite spriteWithFile:@"Bub.png"];
-		[bg setPosition:ccp(160,240)];
+		//Sprite* bg = [Sprite spriteWithFile:@"Bub.png"];
+		//[bg setPosition:ccp(160,240)];
         
-		[self addChild:bg];
+		//[self addChild:bg];
 		MenuItem *resumeButton = [MenuItemFont itemFromString:@"Resume" target:self selector:@selector(onResume:)];
+        MenuItem *puzzleSelectButton = [MenuItemFont itemFromString:@"Puzzle Select Menu" target:self selector:@selector(onPuzzleSelect:)];
 		MenuItemToggle *sound; 
 		if (soundOn)
 		{
@@ -910,7 +746,7 @@ int mainLayoutArray[10][36] = {
 			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"SoundOff"],[MenuItemFont itemFromString: @"SoundOn"],nil];
 		}
 
-		Menu* menu = [Menu menuWithItems:resumeButton,sound,nil];
+		Menu* menu = [Menu menuWithItems:resumeButton,sound,puzzleSelectButton,nil];
 		[menu alignItemsVerticallyWithPadding:10];
 		[menu setPosition:ccp(160,240)];
 		[self addChild:menu z:0];
@@ -918,7 +754,15 @@ int mainLayoutArray[10][36] = {
 	return self;
 }
 
-
+-(void)onPuzzleSelect:(id)sender
+{
+	[self removeAllChildrenWithCleanup:YES];
+	Layer* backGroundLayer = (Layer*)[self parent];
+	[backGroundLayer removeChild:self cleanup:YES];
+	[[backGroundLayer parent] addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0 tag:0];
+    [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
+	[[Director sharedDirector] resume];
+}
 
 -(void)onResume:(id)sender
 {
@@ -932,6 +776,72 @@ int mainLayoutArray[10][36] = {
 -(void)onSound:(id)sender
 {
 	soundOn =!soundOn;
+}
+
+
+
+@end
+
+@implementation LevelSelectLayer
+
+- (id) initWithColor:(ccColor4B)color
+{
+    if ((self = [super initWithColor:color]))
+    {
+     
+        [MenuItemFont setFontSize:20];
+        MenuItem *levelButton1 = [MenuItemFont itemFromString:@"Puzzle 1" target:self selector:@selector(onLevelSelect:)];
+        [levelButton1 setTag:1];
+        MenuItem *levelButton2 = [MenuItemFont itemFromString:@"Puzzle 2" target:self selector:@selector(onLevelSelect:)];
+        [levelButton2 setTag:2];
+        MenuItem *levelButton3 = [MenuItemFont itemFromString:@"Puzzle 3" target:self selector:@selector(onLevelSelect:)];
+        [levelButton3 setTag:3];
+        MenuItem *levelButton4 = [MenuItemFont itemFromString:@"Puzzle 4" target:self selector:@selector(onLevelSelect:)];
+        [levelButton4 setTag:4];
+        MenuItem *levelButton5 = [MenuItemFont itemFromString:@"Puzzle 5" target:self selector:@selector(onLevelSelect:)];
+        [levelButton5 setTag:5];
+        MenuItem *levelButton6 = [MenuItemFont itemFromString:@"Puzzle 6" target:self selector:@selector(onLevelSelect:)];
+        [levelButton6 setTag:6];
+        MenuItem *levelButton7 = [MenuItemFont itemFromString:@"Puzzle 7" target:self selector:@selector(onLevelSelect:)];
+        [levelButton7 setTag:7];
+        MenuItem *levelButton8 = [MenuItemFont itemFromString:@"Puzzle 8" target:self selector:@selector(onLevelSelect:)];
+        [levelButton8 setTag:8];
+        MenuItem *levelButton9 = [MenuItemFont itemFromString:@"Puzzle 9" target:self selector:@selector(onLevelSelect:)];
+        [levelButton9 setTag:9];
+        MenuItem *levelButton10 = [MenuItemFont itemFromString:@"Puzzle 10" target:self selector:@selector(onLevelSelect:)];
+        [levelButton10 setTag:10];
+		
+		
+		Menu* menu = [Menu menuWithItems:levelButton1,levelButton2,levelButton3,levelButton4,levelButton5,levelButton6,levelButton7,levelButton8,levelButton9,levelButton10,nil];
+		[menu alignItemsVerticallyWithPadding:4];
+		[menu setPosition:ccp(160,260)];
+		[self addChild:menu z:0];
+        
+        
+        MenuItem* backButton = [MenuItemFont itemFromString:@"MainMenu" target:self selector:@selector(onBack:)];
+        Menu* backMenu = [Menu menuWithItems:backButton, nil];
+        [backMenu setPosition:ccp(160,30)];
+        [self addChild:backMenu];
+    }
+    return self;
+}
+
+-(void) onBack:(id)sender
+{
+    [self removeAllChildrenWithCleanup:YES];
+    [[self parent] removeChild:self cleanup:YES];
+    [[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[MenuScene node]]];
+}
+
+-(void)onLevelSelect:(id)sender
+{
+    BackgroundLayer* l = [BackgroundLayer node];
+    [[self parent] addChild:l z:0 tag:0];
+    int r = [sender tag];
+    [l readyScreen:r];
+    [self removeAllChildrenWithCleanup:YES];
+    [[self parent] removeChild:self cleanup:YES];
+    
 }
 
 @end

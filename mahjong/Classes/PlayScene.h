@@ -51,18 +51,14 @@
 {
 	BOOL bonusScheduler,timerScheduler;
 	AtlasSpriteManager* manager;
-	AtlasSpriteManager* timerSprites;
-	AtlasSprite* timerBar;
+	//AtlasSpriteManager* timerSprites;
+	//AtlasSprite* timerBar;
 	tileSprite* previousTile;
 	float tileScale,layerOffset;
 	int numCols,numRows,numLayers,numTiles,numTrials,tileCount,currentLayoutIndex;
 	float timex;
-	Label* scoreLabel;
-	Label* readyLabel;
-	Label* scoreNotGood;
-	Label* gameOverLabel;
-	Sprite* bonusLabel;
-	int timeLeftCount;
+    Label* timeLabel;
+	int timeCount;
 	int gameScore;
 	Menu *menu;
 	SystemSoundID shortSound;
@@ -71,28 +67,34 @@
 	int layoutArray[10][36];
 	BOOL tileIDtracker[numberOfTiles];
 	CGPoint previousTouch;
-	int bonusCounter,bonusFlashCount;
 	int roundScore[(numberOfGames-1)];
 	BOOL enableTouch,endGame;
 }
-
-
 
 -(void) checkWhichTileSelected:(CGPoint)currentPoint; 
 -(void) checkIfMatch:(tileSprite*)currentTile;
 -(void) ridTile:(tileSprite*)currentTile;
 -(void) initGame;
 -(void) readyScreen:(int)roundNumber;
--(void) gameFinished :(int)parameter;
+-(void) gameFinished;
+-(void) beginRoundFunc;
+-(void) getTime;
 
 
 @end
 
-@interface PauseLayer : Layer
+@interface PauseLayer : ColorLayer
 {	
 }
 @end
 
+@interface LevelSelectLayer : ColorLayer 
+{
+    
+    
+}
+
+@end
 
 
 
