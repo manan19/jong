@@ -16,3 +16,10 @@ BOOL soundOn;
 
 
 @end
+
+
+@interface MenuLayer : ColorLayer {
+
+    
+}
+@end

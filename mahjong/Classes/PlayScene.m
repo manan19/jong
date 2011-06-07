@@ -9,7 +9,7 @@
 #import "PlayScene.h"
 #import "MahjonggAppDelegate.h"
 
-int mainLayoutArray[10][36] = {
+int mainLayoutArray[12][36] = {
     
 {	0,0,1,1,0,0,
     0,0,1,1,0,0,
@@ -47,7 +47,7 @@ int mainLayoutArray[10][36] = {
     0,0,1,1,0,0},
     
 {	0,0,1,1,0,1,
-    0,0,1,2,0,0,
+    0,0,1,1,0,0,
     1,1,1,2,1,1,
     1,1,2,1,1,1,
     0,0,1,1,0,0,
@@ -82,7 +82,21 @@ int mainLayoutArray[10][36] = {
 	1,1,2,2,1,1,
 	1,3,2,2,3,1,
 	1,1,1,1,1,1,
-	2,1,0,0,1,2}
+	2,1,0,0,1,2},
+    
+{   1,1,0,0,1,1,
+    0,2,3,3,2,0,
+    1,1,2,2,1,1,
+    1,3,2,2,3,1,
+    1,2,1,1,2,1,
+    2,1,0,0,1,2},
+    
+{   0,1,2,2,1,0,
+    1,2,3,3,2,1,
+    1,1,2,2,1,1,
+    1,3,2,2,3,1,
+    1,1,1,1,1,1,
+    2,1,2,2,1,2}
 };
 
 
@@ -116,11 +130,7 @@ int mainLayoutArray[10][36] = {
 
 	if ((self = [super init]))
 	{
-		//Sprite* backGroundImage = [Sprite spriteWithFile:@"Bub.png"];
-		//[backGroundImage setPosition:ccp(160,240)];
-		//[self addChild:backGroundImage z:0];
-		//[self addChild:[BackgroundLayer node] z:0 tag:0];
-        [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0];
+        [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:0];
 		
 	}
 	return self;
@@ -129,9 +139,7 @@ int mainLayoutArray[10][36] = {
 -(void) finishGame
 {
 	[[self getChildByTag:0] removeAllChildrenWithCleanup:YES];
-	//[self removeAllChildrenWithCleanup:YES];
-	//[[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[MenuScene node]]];
-    [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0];	
+	[self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:0];	
 }
 
 -(void) restartGame:(int)index
@@ -145,9 +153,9 @@ int mainLayoutArray[10][36] = {
 
 @implementation BackgroundLayer
 
--(id) init
+-(id) initWithColor:(ccColor4B)color
 {
-	if ((self = [super init]))
+	if ((self = [super initWithColor:color]))
 	{
 		endGame = FALSE;		
 		roundScore[0] = 600;
@@ -163,7 +171,7 @@ int mainLayoutArray[10][36] = {
 		layerOffset = 7.0f;
         timeCount = 0;
 		
-		for (int i=0;i < 10;i++)
+		for (int i=0;i < numberOfGames;i++)
 		{
 			for (int j=0;j<36;j++)
 			{
@@ -187,11 +195,16 @@ int mainLayoutArray[10][36] = {
 		[takeScoreMenu setVisible:NO];
 		[self addChild:takeScoreMenu];*/
         
-        timeLabel = [Label labelWithString:[NSString stringWithFormat: @"Time: %d",timeCount] fontName:@"Arial" fontSize:16];
+        timeLabel = [Label labelWithString:[NSString stringWithFormat: @"Time: %f",timeCount] fontName:[MenuItemFont fontName] fontSize:16];
 		[timeLabel setPosition:ccp(250,450)];
 		[timeLabel setVisible:NO];
 		[self addChild:timeLabel z:0];
-		
+        
+        previousBestTime = [Label labelWithString:[NSString stringWithFormat: @"Previous Best: %f",timeCount] fontName:[MenuItemFont fontName] fontSize:16];
+		[previousBestTime setPosition:ccp(200,400)];
+		[previousBestTime setVisible:NO];
+		[self addChild:previousBestTime z:0];
+        
 //		timerBar = [AtlasSprite spriteWithRect:CGRectMake(0,0, 148, 11) spriteManager:timerSprites];
 //		[timerBar setPosition:ccp(220,450)];
 //		[timerBar setScale:1.0f];
@@ -210,7 +223,7 @@ int mainLayoutArray[10][36] = {
 {
 	[self setIsTouchEnabled:FALSE];
 	[[Director sharedDirector] pause];
-	[self addChild:[[[PauseLayer alloc] initWithColor:ccc4(0, 0, 0,255)] autorelease] z:1 tag:1];
+	[self addChild:[[[PauseLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:1 tag:1];
 }
 
 
@@ -237,6 +250,18 @@ int mainLayoutArray[10][36] = {
 	[menu setVisible:YES];
     [timeLabel setVisible:YES];
 		
+    float prevBest = [[(MahjonggAppDelegate*)[[UIApplication sharedApplication] delegate]getScoreMananger] getBestScoreForLevel:currentLayoutIndex];
+    
+    if (prevBest > 0)
+    {
+        [previousBestTime setString:[NSString stringWithFormat:@"Previous Best: %f",prevBest]];
+    }
+    {
+        [previousBestTime setString:@"Previous Best: NA"];
+    }
+    
+    [previousBestTime setVisible:YES];
+    
     [self schedule:@selector(getTime) interval:0.03f];
     
 	if (soundOn)
@@ -605,6 +630,7 @@ int mainLayoutArray[10][36] = {
 			
 			[menu setVisible:NO];
 			[timeLabel setVisible:NO];
+            [previousBestTime setVisible:NO];
 			//[takeScoreMenu setVisible:NO];
 			
 			tileCount = 0;
@@ -698,19 +724,19 @@ int mainLayoutArray[10][36] = {
 -(void) gameFinished
 {
 	{
-		Label* time = [Label labelWithString:@"Puzzle Complete" fontName:@"Arial" fontSize:30];
+		Label* time = [Label labelWithString:@"Puzzle Complete" fontName:[MenuItemFont fontName] fontSize:30];
 		[time setPosition:ccp(160,300)];
 		[self addChild:time z:1];
 	}
 	
 	
 	{
-		Label* lessScore = [Label labelWithString:@"Tap to continue" fontName:@"Arial" fontSize:20];
+		Label* lessScore = [Label labelWithString:@"Tap to continue" fontName:[MenuItemFont fontName] fontSize:20];
 		[lessScore setPosition:ccp(160,120)];
 		[self addChild:lessScore z:1];
 	}
 	
-	[[(MahjonggAppDelegate*)[[UIApplication sharedApplication] delegate]getScoreMananger] newScore:timeCount forLevel:currentLayoutIndex sendToGC:YES];
+	[[(MahjonggAppDelegate*)[[UIApplication sharedApplication] delegate]getScoreMananger] newScore:timeCount forLevel:currentLayoutIndex+1 sendToGC:YES];
     
 	endGame = YES; 
 }
@@ -763,7 +789,7 @@ int mainLayoutArray[10][36] = {
 	[self removeAllChildrenWithCleanup:YES];
 	Layer* backGroundLayer = (Layer*)[self parent];
 	[backGroundLayer removeChild:self cleanup:YES];
-	[[backGroundLayer parent] addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(123, 234, 89,255)] autorelease] z:0 tag:0];
+	[[backGroundLayer parent] addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:0 tag:0];
     [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
 	[[Director sharedDirector] resume];
 }
@@ -790,41 +816,80 @@ int mainLayoutArray[10][36] = {
 
 - (id) initWithColor:(ccColor4B)color
 {
-    if ((self = [super init]))
+    if ((self = [super initWithColor:color]))
     {
-     
-        [MenuItemFont setFontSize:20];
-        MenuItem *levelButton1 = [MenuItemFont itemFromString:@"Puzzle 1" target:self selector:@selector(onLevelSelect:)];
+        Label* l = [Label labelWithString:@"Select to Play" fontName:[MenuItemFont fontName] fontSize:[MenuItemFont fontSize]];
+        [l setPosition:ccp(160,440)];
+        [self addChild:l];
+        
+        MenuItem *levelButton1 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level1.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton1 setTag:1];
-        MenuItem *levelButton2 = [MenuItemFont itemFromString:@"Puzzle 2" target:self selector:@selector(onLevelSelect:)];
+        [levelButton1 setScale:0.25f];
+        
+        
+        MenuItem *levelButton2 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level2.png"] selectedSprite:[Sprite spriteWithFile:@"level2.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton2 setTag:2];
-        MenuItem *levelButton3 = [MenuItemFont itemFromString:@"Puzzle 3" target:self selector:@selector(onLevelSelect:)];
+        [levelButton2 setScale:0.25f];
+        
+         MenuItem *levelButton3 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level3.png"] selectedSprite:[Sprite spriteWithFile:@"level3.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton3 setTag:3];
-        MenuItem *levelButton4 = [MenuItemFont itemFromString:@"Puzzle 4" target:self selector:@selector(onLevelSelect:)];
+        [levelButton3 setScale:0.25f];
+        
+         MenuItem *levelButton4 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level4.png"] selectedSprite:[Sprite spriteWithFile:@"level4.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton4 setTag:4];
-        MenuItem *levelButton5 = [MenuItemFont itemFromString:@"Puzzle 5" target:self selector:@selector(onLevelSelect:)];
+        [levelButton4 setScale:0.25f];
+        
+         MenuItem *levelButton5 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level5.png"] selectedSprite:[Sprite spriteWithFile:@"level5.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton5 setTag:5];
-        MenuItem *levelButton6 = [MenuItemFont itemFromString:@"Puzzle 6" target:self selector:@selector(onLevelSelect:)];
+        [levelButton5 setScale:0.25f];
+        
+        MenuItem *levelButton6 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level6.png"] selectedSprite:[Sprite spriteWithFile:@"level6.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton6 setTag:6];
-        MenuItem *levelButton7 = [MenuItemFont itemFromString:@"Puzzle 7" target:self selector:@selector(onLevelSelect:)];
+        [levelButton6 setScale:0.25f];
+        
+        MenuItem *levelButton7 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level7.png"] selectedSprite:[Sprite spriteWithFile:@"level7.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton7 setTag:7];
-        MenuItem *levelButton8 = [MenuItemFont itemFromString:@"Puzzle 8" target:self selector:@selector(onLevelSelect:)];
+        [levelButton7 setScale:0.25f];
+        
+        MenuItem *levelButton8 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level8.png"] selectedSprite:[Sprite spriteWithFile:@"level8.png"] target:self selector:@selector(onLevelSelect:)];
         [levelButton8 setTag:8];
-        MenuItem *levelButton9 = [MenuItemFont itemFromString:@"Puzzle 9" target:self selector:@selector(onLevelSelect:)];
+        [levelButton8 setScale:0.25f];                          
+                                  
+        MenuItem *levelButton9 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level9.png"] selectedSprite:[Sprite spriteWithFile:@"level9.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton9 setTag:9];
-        MenuItem *levelButton10 = [MenuItemFont itemFromString:@"Puzzle 10" target:self selector:@selector(onLevelSelect:)];
+        [levelButton9 setScale:0.25f];
+                                  
+        MenuItem *levelButton10 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level10.png"] selectedSprite:[Sprite spriteWithFile:@"level10.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton10 setTag:10];
+        [levelButton10 setScale:0.25f];
+        
+        MenuItem *levelButton11 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level11.png"] selectedSprite:[Sprite spriteWithFile:@"level11.png"]target:self selector:@selector(onLevelSelect:)];
+        [levelButton11 setTag:11];
+        [levelButton11 setScale:0.25f];
+        
+        MenuItem *levelButton12 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level12.png"] selectedSprite:[Sprite spriteWithFile:@"level12.png"]target:self selector:@selector(onLevelSelect:)];
+        [levelButton12 setTag:12];
+        [levelButton12 setScale:0.25f];
 		
-		
-		Menu* menu = [Menu menuWithItems:levelButton1,levelButton2,levelButton3,levelButton4,levelButton5,levelButton6,levelButton7,levelButton8,levelButton9,levelButton10,nil];
-		[menu alignItemsVerticallyWithPadding:4];
-		[menu setPosition:ccp(160,260)];
+		Menu* menu = [Menu menuWithItems:levelButton1,levelButton2,levelButton3,levelButton4,nil];
+		[menu alignItemsHorizontallyWithPadding:5];
+		[menu setPosition:ccp(160,370)];
 		[self addChild:menu z:0];
+        
+        Menu* menu1 = [Menu menuWithItems:levelButton5,levelButton6,levelButton7,levelButton8,nil];
+		[menu1 alignItemsHorizontallyWithPadding:5];
+		[menu1 setPosition:ccp(160,270)];
+		[self addChild:menu1 z:0];
+        
+        Menu* menu2 = [Menu menuWithItems:levelButton9,levelButton10,levelButton11,levelButton12,nil];
+		[menu2 alignItemsHorizontallyWithPadding:5];
+		[menu2 setPosition:ccp(160,170)];
+		[self addChild:menu2 z:0];
         
         
         MenuItem* backButton = [MenuItemFont itemFromString:@"MainMenu" target:self selector:@selector(onBack:)];
         Menu* backMenu = [Menu menuWithItems:backButton, nil];
-        [backMenu setPosition:ccp(160,30)];
+        [backMenu setPosition:ccp(160,100)];
         [self addChild:backMenu];
     }
     return self;
@@ -834,12 +899,12 @@ int mainLayoutArray[10][36] = {
 {
     [self removeAllChildrenWithCleanup:YES];
     [[self parent] removeChild:self cleanup:YES];
-    [[Director sharedDirector] replaceScene:[FadeTransition transitionWithDuration:.5 scene:[MenuScene node]]];
+    [[Director sharedDirector] replaceScene:[MenuScene node]];
 }
 
 -(void)onLevelSelect:(id)sender
 {
-    BackgroundLayer* l = [BackgroundLayer node];
+    BackgroundLayer* l = [[[BackgroundLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease];
     [[self parent] addChild:l z:0 tag:0];
     int r = [sender tag];
     [l readyScreen:r-1];

@@ -12,7 +12,19 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		5091DA77139D3431002DA679 /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5091DA72139D3431002DA679 /* level1.png */; };
+		5091DA78139D3431002DA679 /* level2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5091DA73139D3431002DA679 /* level2.png */; };
+		5091DA79139D3431002DA679 /* level3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5091DA74139D3431002DA679 /* level3.png */; };
+		5091DA7A139D3431002DA679 /* level4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5091DA75139D3431002DA679 /* level4.png */; };
+		5091DA7B139D3431002DA679 /* level5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5091DA76139D3431002DA679 /* level5.png */; };
 		50C602AC1391906C007FE9CD /* mahjong.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C602AB1391906C007FE9CD /* mahjong.png */; };
+		50F59F71139E0E2C001F132C /* level6.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F59F6C139E0E2C001F132C /* level6.png */; };
+		50F59F72139E0E2C001F132C /* level7.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F59F6D139E0E2C001F132C /* level7.png */; };
+		50F59F73139E0E2C001F132C /* level8.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F59F6E139E0E2C001F132C /* level8.png */; };
+		50F59F74139E0E2C001F132C /* level9.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F59F6F139E0E2C001F132C /* level9.png */; };
+		50F59F75139E0E2C001F132C /* level10.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F59F70139E0E2C001F132C /* level10.png */; };
+		50F59F7D139E16A1001F132C /* level11.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F59F7B139E16A1001F132C /* level11.png */; };
+		50F59F7E139E16A1001F132C /* level12.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F59F7C139E16A1001F132C /* level12.png */; };
 		59C17F0B138F7DF500B4D1B5 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0A138F7DF500B4D1B5 /* libGoogleAdMobAds.a */; };
 		59C17F0D138F7E7300B4D1B5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0C138F7E7300B4D1B5 /* MessageUI.framework */; };
 		59C17F0F138F7E7D00B4D1B5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C17F0E138F7E7D00B4D1B5 /* SystemConfiguration.framework */; };
@@ -109,7 +121,19 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mahjongg_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mahjongg_Prefix.pch; sourceTree = "<group>"; };
+		5091DA72139D3431002DA679 /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level1.png; sourceTree = "<group>"; };
+		5091DA73139D3431002DA679 /* level2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level2.png; sourceTree = "<group>"; };
+		5091DA74139D3431002DA679 /* level3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level3.png; sourceTree = "<group>"; };
+		5091DA75139D3431002DA679 /* level4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level4.png; sourceTree = "<group>"; };
+		5091DA76139D3431002DA679 /* level5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level5.png; sourceTree = "<group>"; };
 		50C602AB1391906C007FE9CD /* mahjong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mahjong.png; path = Assets/mahjong.png; sourceTree = "<group>"; };
+		50F59F6C139E0E2C001F132C /* level6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level6.png; sourceTree = "<group>"; };
+		50F59F6D139E0E2C001F132C /* level7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level7.png; sourceTree = "<group>"; };
+		50F59F6E139E0E2C001F132C /* level8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level8.png; sourceTree = "<group>"; };
+		50F59F6F139E0E2C001F132C /* level9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level9.png; sourceTree = "<group>"; };
+		50F59F70139E0E2C001F132C /* level10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level10.png; sourceTree = "<group>"; };
+		50F59F7B139E16A1001F132C /* level11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level11.png; sourceTree = "<group>"; };
+		50F59F7C139E16A1001F132C /* level12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level12.png; sourceTree = "<group>"; };
 		59C17F04138F7DF500B4D1B5 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
 		59C17F05138F7DF500B4D1B5 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
 		59C17F06138F7DF500B4D1B5 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
@@ -354,6 +378,18 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				50F59F7B139E16A1001F132C /* level11.png */,
+				50F59F7C139E16A1001F132C /* level12.png */,
+				50F59F6C139E0E2C001F132C /* level6.png */,
+				50F59F6D139E0E2C001F132C /* level7.png */,
+				50F59F6E139E0E2C001F132C /* level8.png */,
+				50F59F6F139E0E2C001F132C /* level9.png */,
+				50F59F70139E0E2C001F132C /* level10.png */,
+				5091DA72139D3431002DA679 /* level1.png */,
+				5091DA73139D3431002DA679 /* level2.png */,
+				5091DA74139D3431002DA679 /* level3.png */,
+				5091DA75139D3431002DA679 /* level4.png */,
+				5091DA76139D3431002DA679 /* level5.png */,
 				50C602AB1391906C007FE9CD /* mahjong.png */,
 				D983F9E3106D73880060C946 /* blocks.png */,
 				D983F9B5106D69D40060C946 /* Default.png */,
@@ -639,6 +675,18 @@
 				D983F9B6106D69D40060C946 /* Default.png in Resources */,
 				D983F9E4106D73880060C946 /* blocks.png in Resources */,
 				50C602AC1391906C007FE9CD /* mahjong.png in Resources */,
+				5091DA77139D3431002DA679 /* level1.png in Resources */,
+				5091DA78139D3431002DA679 /* level2.png in Resources */,
+				5091DA79139D3431002DA679 /* level3.png in Resources */,
+				5091DA7A139D3431002DA679 /* level4.png in Resources */,
+				5091DA7B139D3431002DA679 /* level5.png in Resources */,
+				50F59F71139E0E2C001F132C /* level6.png in Resources */,
+				50F59F72139E0E2C001F132C /* level7.png in Resources */,
+				50F59F73139E0E2C001F132C /* level8.png in Resources */,
+				50F59F74139E0E2C001F132C /* level9.png in Resources */,
+				50F59F75139E0E2C001F132C /* level10.png in Resources */,
+				50F59F7D139E16A1001F132C /* level11.png in Resources */,
+				50F59F7E139E16A1001F132C /* level12.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

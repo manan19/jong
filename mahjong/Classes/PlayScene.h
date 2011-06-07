@@ -17,7 +17,7 @@
 #define numberOfColumns 6
 #define numberOfTiles 144
 #define numberOfLayers 5
-#define numberOfGames 10
+#define numberOfGames 12
 
 
 
@@ -47,7 +47,7 @@
 -(void) finishGame;
 @end
 
-@interface BackgroundLayer : Layer
+@interface BackgroundLayer : ColorLayer
 {
     @public
 	BOOL bonusScheduler,timerScheduler;
@@ -58,14 +58,14 @@
 	float tileScale,layerOffset;
 	int numCols,numRows,numLayers,numTiles,numTrials,tileCount,currentLayoutIndex;
 	float timex;
-    Label* timeLabel;
+    Label* timeLabel,*previousBestTime;
 	float timeCount;
 	int gameScore;
 	Menu *menu;
 	SystemSoundID shortSound;
 	NSURL* audioFile;
  	tileSprite* tileBoard[numberOfRows][numberOfColumns][numberOfLayers];
-	int layoutArray[10][36];
+	int layoutArray[numberOfGames][36];
 	BOOL tileIDtracker[numberOfTiles];
 	CGPoint previousTouch;
 	int roundScore[(numberOfGames-1)];
@@ -89,7 +89,7 @@
 }
 @end
 
-@interface LevelSelectLayer : Layer 
+@interface LevelSelectLayer : ColorLayer 
 {
     
     
