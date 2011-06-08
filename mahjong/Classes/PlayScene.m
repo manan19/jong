@@ -827,49 +827,49 @@ int mainLayoutArray[12][36] = {
         //[levelButton1 setScale:0.20f];
         
         
-        MenuItem *levelButton2 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level2.png"]target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton2 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level2.png"] selectedSprite:[Sprite spriteWithFile:@"level2.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton2 setTag:2];
         //[levelButton2 setScale:0.20f];
         
-         MenuItem *levelButton3 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level3.png"]target:self selector:@selector(onLevelSelect:)];
+         MenuItem *levelButton3 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level3.png"] selectedSprite:[Sprite spriteWithFile:@"level3.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton3 setTag:3];
         //[levelButton3 setScale:0.20f];
         
-         MenuItem *levelButton4 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level4.png"]target:self selector:@selector(onLevelSelect:)];
+         MenuItem *levelButton4 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level4.png"] selectedSprite:[Sprite spriteWithFile:@"level4.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton4 setTag:4];
-        [levelButton4 setScale:0.20f];
+        //[levelButton4 setScale:0.20f];
         
-         MenuItem *levelButton5 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level5.png"]target:self selector:@selector(onLevelSelect:)];
+         MenuItem *levelButton5 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level5.png"] selectedSprite:[Sprite spriteWithFile:@"level5.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton5 setTag:5];
-        [levelButton5 setScale:0.20f];
+        //[levelButton5 setScale:0.20f];
         
-        MenuItem *levelButton6 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level6.png"]target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton6 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level6.png"] selectedSprite:[Sprite spriteWithFile:@"level6.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton6 setTag:6];
-        [levelButton6 setScale:0.20f];
+        //[levelButton6 setScale:0.20f];
         
-        MenuItem *levelButton7 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level7.png"]target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton7 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level7.png"] selectedSprite:[Sprite spriteWithFile:@"level7.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton7 setTag:7];
-        [levelButton7 setScale:0.20f];
+        //[levelButton7 setScale:0.20f];
         
-        MenuItem *levelButton8 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level8.png"] target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton8 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level8.png"] selectedSprite:[Sprite spriteWithFile:@"level8.png"] target:self selector:@selector(onLevelSelect:)];
         [levelButton8 setTag:8];
-        [levelButton8 setScale:0.20f];                          
+        //[levelButton8 setScale:0.20f];                          
                                   
-        MenuItem *levelButton9 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level9.png"]target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton9 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level9.png"] selectedSprite:[Sprite spriteWithFile:@"level9.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton9 setTag:9];
-        [levelButton9 setScale:0.20f];
+        //[levelButton9 setScale:0.20f];
                                   
-        MenuItem *levelButton10 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level10.png"]target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton10 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level10.png"] selectedSprite:[Sprite spriteWithFile:@"level10.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton10 setTag:10];
-        [levelButton10 setScale:0.20f];
+        //[levelButton10 setScale:0.20f];
         
-        MenuItem *levelButton11 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level11.png"]target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton11 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level11.png"] selectedSprite:[Sprite spriteWithFile:@"level11.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton11 setTag:11];
-        [levelButton11 setScale:0.20f];
+        //[levelButton11 setScale:0.20f];
         
-        MenuItem *levelButton12 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level1.png"] selectedSprite:[Sprite spriteWithFile:@"level12.png"]target:self selector:@selector(onLevelSelect:)];
+        MenuItem *levelButton12 = [MenuItemSprite itemFromNormalSprite:[Sprite spriteWithFile:@"level12.png"] selectedSprite:[Sprite spriteWithFile:@"level12.png"]target:self selector:@selector(onLevelSelect:)];
         [levelButton12 setTag:12];
-        [levelButton12 setScale:0.20f];
+        //[levelButton12 setScale:0.20f];
 		
 		Menu* menu = [Menu menuWithItems:levelButton1,levelButton2,levelButton3,levelButton4,nil];
 		[menu alignItemsHorizontallyWithPadding:15];

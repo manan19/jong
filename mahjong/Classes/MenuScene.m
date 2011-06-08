@@ -96,7 +96,7 @@
         [bgImage setScale:0.8f];
         [self addChild:bgImage];
         
-        Label* l1 = [Label labelWithString:@"1. Match same tiles to make them disappear." dimensions:CGSizeMake(320, 30) alignment:UITextAlignmentLeft fontName:[MenuItemFont fontName] fontSize:15];
+        Label* l1 = [Label labelWithString:@"1. Match same tiles to clear them." dimensions:CGSizeMake(320, 30) alignment:UITextAlignmentLeft fontName:[MenuItemFont fontName] fontSize:15];
         Label* l2 = [Label labelWithString:@"2. Only tiles on top which are not covered on left and right sides are selectable." dimensions:CGSizeMake(320, 50) alignment:UITextAlignmentLeft fontName:[MenuItemFont fontName] fontSize:15];
         
         Label* l3 = [Label labelWithString:@"3. Clear all the tiles as fast as you can. Compare scores on Game Center." dimensions:CGSizeMake(320, 50) alignment:UITextAlignmentLeft fontName:[MenuItemFont fontName] fontSize:15];
