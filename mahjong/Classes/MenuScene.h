@@ -23,3 +23,9 @@ BOOL soundOn;
     
 }
 @end
+
+@interface InstructionsLayer : ColorLayer {
+    
+    
+}
+@end
