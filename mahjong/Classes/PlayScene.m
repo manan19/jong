@@ -207,12 +207,12 @@ int mainLayoutArray[12][36] = {
 		[takeScoreMenu setVisible:NO];
 		[self addChild:takeScoreMenu];*/
         
-        timeLabel = [Label labelWithString:[NSString stringWithFormat: @"Time: %f",timeCount] fontName:[MenuItemFont fontName] fontSize:16];
+        timeLabel = [Label labelWithString:[NSString stringWithFormat: @"Time: %.2f",timeCount] fontName:[MenuItemFont fontName] fontSize:16];
 		[timeLabel setPosition:ccp(250,450)];
 		[timeLabel setVisible:NO];
 		[self addChild:timeLabel z:0];
         
-        previousBestTime = [Label labelWithString:[NSString stringWithFormat: @"Previous Best: %f",timeCount] fontName:[MenuItemFont fontName] fontSize:16];
+        previousBestTime = [Label labelWithString:[NSString stringWithFormat: @"Previous Best: %.2f",timeCount] fontName:[MenuItemFont fontName] fontSize:16];
 		[previousBestTime setPosition:ccp(90,450)];
 		[previousBestTime setVisible:NO];
 		[self addChild:previousBestTime z:0];
