@@ -341,6 +341,14 @@ int mainLayoutArray[12][36] = {
 	int trackingNumber = 0;
 	BOOL forLoop = TRUE;
 	numTrials = numTiles/2;
+    
+    int tileRandomizeStart = abs(arc4random())%(144-numTiles);
+    
+    while (tileRandomizeStart%4 !=0)
+    {
+        tileRandomizeStart--;
+    }
+    
 	for (int i = 0; i < numRows ;i++ )
 	{
 		for (int j=0;j< numCols;j++)
@@ -392,6 +400,11 @@ int mainLayoutArray[12][36] = {
 						trackingNumber = layoutArray[currentLayoutIndex][stackCount];
 						enable = FALSE;
 					}
+                    
+                    if (i == 5 && j == 2 && currentLayoutIndex == 5)
+                    {
+                        enable = true;
+                    }
 					
 					int index; 
 					int tempcount = 0;
@@ -443,6 +456,7 @@ int mainLayoutArray[12][36] = {
 					}
 					
                     
+                    index+=tileRandomizeStart;
 					tileBoard[i][j][k-1] = [tileSprite spriteWithRect:CGRectMake(54*(index%12), (60*(index/12)), 54, 60) spriteManager:manager];
 					[manager addChild:tileBoard[i][j][k-1] z:zValue+1];
 					CGPoint center = ccp(firstCenter.x + 27.0f*tileScale*j + layerOffset*(k-1),firstCenter.y - 30.0f*tileScale*i + layerOffset*(k-1));
