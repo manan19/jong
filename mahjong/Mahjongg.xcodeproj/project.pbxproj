@@ -96,21 +96,13 @@
 		D97A6E8F106CDC9B000D1D57 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D97A6E8E106CDC9B000D1D57 /* libz.1.2.3.dylib */; };
 		D983F9B4106D69C10060C946 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D983F9B3106D69C10060C946 /* Icon.png */; };
 		D983F9B6106D69D40060C946 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D983F9B5106D69D40060C946 /* Default.png */; };
-		D983F9E4106D73880060C946 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = D983F9E3106D73880060C946 /* blocks.png */; };
-		E8022D3A10580D3F0005C8F8 /* white.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E8022D3910580D3F0005C8F8 /* white.jpg */; };
-		E8022D4810580ECC0005C8F8 /* Bub.png in Resources */ = {isa = PBXBuildFile; fileRef = E8022D4710580ECC0005C8F8 /* Bub.png */; };
-		E898729B101EE62B0092A1B7 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = E8987299101EE62B0092A1B7 /* fps_images.png */; };
-		E898729C101EE62B0092A1B7 /* mytiles.png in Resources */ = {isa = PBXBuildFile; fileRef = E898729A101EE62B0092A1B7 /* mytiles.png */; };
 		E89872B8101EE8B00092A1B7 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E89872B7101EE8B00092A1B7 /* MenuScene.m */; };
 		E89872C3101EE8FA0092A1B7 /* PlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E89872C2101EE8FA0092A1B7 /* PlayScene.m */; };
-		E89873B7102021A00092A1B7 /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = E89873B6102021A00092A1B7 /* shadow.png */; };
-		E8987AA110244FE50092A1B7 /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = E8987AA010244FE50092A1B7 /* tiles.png */; };
 		E8D19C5D104EF4FE0087982E /* deselect.wav in Resources */ = {isa = PBXBuildFile; fileRef = E8D19C57104EF4FE0087982E /* deselect.wav */; };
 		E8D19C5E104EF4FE0087982E /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = E8D19C58104EF4FE0087982E /* error.wav */; };
 		E8D19C5F104EF4FE0087982E /* opener.wav in Resources */ = {isa = PBXBuildFile; fileRef = E8D19C59104EF4FE0087982E /* opener.wav */; };
 		E8D19C60104EF4FE0087982E /* removeTile.wav in Resources */ = {isa = PBXBuildFile; fileRef = E8D19C5A104EF4FE0087982E /* removeTile.wav */; };
 		E8D19C61104EF4FE0087982E /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = E8D19C5B104EF4FE0087982E /* select.wav */; };
-		E8D19C62104EF4FE0087982E /* timer.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D19C5C104EF4FE0087982E /* timer.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -279,23 +271,15 @@
 		D97A6E8E106CDC9B000D1D57 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = /usr/lib/libz.1.2.3.dylib; sourceTree = "<absolute>"; };
 		D983F9B3106D69C10060C946 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Assets/Icon.png; sourceTree = "<group>"; };
 		D983F9B5106D69D40060C946 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Assets/Default.png; sourceTree = "<group>"; };
-		D983F9E3106D73880060C946 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Assets/blocks.png; sourceTree = "<group>"; };
-		E8022D3910580D3F0005C8F8 /* white.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = white.jpg; path = Assets/white.jpg; sourceTree = "<group>"; };
-		E8022D4710580ECC0005C8F8 /* Bub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bub.png; path = Assets/Bub.png; sourceTree = "<group>"; };
-		E8987299101EE62B0092A1B7 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Assets/fps_images.png; sourceTree = "<group>"; };
-		E898729A101EE62B0092A1B7 /* mytiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mytiles.png; path = Assets/mytiles.png; sourceTree = "<group>"; };
 		E89872B6101EE8B00092A1B7 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		E89872B7101EE8B00092A1B7 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		E89872C1101EE8FA0092A1B7 /* PlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayScene.h; sourceTree = "<group>"; };
 		E89872C2101EE8FA0092A1B7 /* PlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayScene.m; sourceTree = "<group>"; };
-		E89873B6102021A00092A1B7 /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shadow.png; path = Assets/shadow.png; sourceTree = "<group>"; };
-		E8987AA010244FE50092A1B7 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tiles.png; path = Assets/tiles.png; sourceTree = "<group>"; };
 		E8D19C57104EF4FE0087982E /* deselect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = deselect.wav; path = Assets/deselect.wav; sourceTree = "<group>"; };
 		E8D19C58104EF4FE0087982E /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = error.wav; path = Assets/error.wav; sourceTree = "<group>"; };
 		E8D19C59104EF4FE0087982E /* opener.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = opener.wav; path = Assets/opener.wav; sourceTree = "<group>"; };
 		E8D19C5A104EF4FE0087982E /* removeTile.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = removeTile.wav; path = Assets/removeTile.wav; sourceTree = "<group>"; };
 		E8D19C5B104EF4FE0087982E /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = select.wav; path = Assets/select.wav; sourceTree = "<group>"; };
-		E8D19C5C104EF4FE0087982E /* timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timer.png; path = Assets/timer.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,21 +378,13 @@
 				5091DA75139D3431002DA679 /* level4.png */,
 				5091DA76139D3431002DA679 /* level5.png */,
 				50C602AB1391906C007FE9CD /* mahjong.png */,
-				D983F9E3106D73880060C946 /* blocks.png */,
 				D983F9B5106D69D40060C946 /* Default.png */,
 				D983F9B3106D69C10060C946 /* Icon.png */,
-				E8022D4710580ECC0005C8F8 /* Bub.png */,
-				E8022D3910580D3F0005C8F8 /* white.jpg */,
 				E8D19C57104EF4FE0087982E /* deselect.wav */,
 				E8D19C58104EF4FE0087982E /* error.wav */,
 				E8D19C59104EF4FE0087982E /* opener.wav */,
 				E8D19C5A104EF4FE0087982E /* removeTile.wav */,
 				E8D19C5B104EF4FE0087982E /* select.wav */,
-				E8D19C5C104EF4FE0087982E /* timer.png */,
-				E8987AA010244FE50092A1B7 /* tiles.png */,
-				E89873B6102021A00092A1B7 /* shadow.png */,
-				E8987299101EE62B0092A1B7 /* fps_images.png */,
-				E898729A101EE62B0092A1B7 /* mytiles.png */,
 				84098BF61067545F008A96D7 /* Mahjongg-Info.plist */,
 			);
 			name = Resources;
@@ -662,21 +638,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E898729B101EE62B0092A1B7 /* fps_images.png in Resources */,
-				E898729C101EE62B0092A1B7 /* mytiles.png in Resources */,
-				E89873B7102021A00092A1B7 /* shadow.png in Resources */,
-				E8987AA110244FE50092A1B7 /* tiles.png in Resources */,
 				E8D19C5D104EF4FE0087982E /* deselect.wav in Resources */,
 				E8D19C5E104EF4FE0087982E /* error.wav in Resources */,
 				E8D19C5F104EF4FE0087982E /* opener.wav in Resources */,
 				E8D19C60104EF4FE0087982E /* removeTile.wav in Resources */,
 				E8D19C61104EF4FE0087982E /* select.wav in Resources */,
-				E8D19C62104EF4FE0087982E /* timer.png in Resources */,
-				E8022D3A10580D3F0005C8F8 /* white.jpg in Resources */,
-				E8022D4810580ECC0005C8F8 /* Bub.png in Resources */,
 				D983F9B4106D69C10060C946 /* Icon.png in Resources */,
 				D983F9B6106D69D40060C946 /* Default.png in Resources */,
-				D983F9E4106D73880060C946 /* blocks.png in Resources */,
 				50C602AC1391906C007FE9CD /* mahjong.png in Resources */,
 				5091DA77139D3431002DA679 /* level1.png in Resources */,
 				5091DA78139D3431002DA679 /* level2.png in Resources */,
