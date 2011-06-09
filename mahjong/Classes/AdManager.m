@@ -105,7 +105,6 @@
 {
     // Get user's country code based on currentLocale
     NSLocale *locale = [NSLocale currentLocale];
-    countryCode = [locale objectForKey: NSLocaleCountryCode];
     
     if ( countryCode == nil )
         countryCode = [locale objectForKey: NSLocaleCountryCode];
@@ -150,6 +149,7 @@
         
         _adView = bannerView;
     }
+    [self setParentView:_parentViewController.view andPosition:FALSE];
 }
 
 #pragma mark -

@@ -44,11 +44,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     {
         //[gameCenterButton removeFromSuperview];
     }
-    //[scoreManager newScore:10 forLevel:1 sendToGC:TRUE];
-    
-        // Setup Ads if NOT Ad Free
-    adManager = [[AdManager alloc] init:placeHolderViewController];
-    [adManager setParentView:placeHolderViewController.view andPosition:FALSE];
     
         //[[Director sharedDirector] setLandscape:YES];
 	[[Director sharedDirector] setDeviceOrientation:CCDeviceOrientationPortrait];
@@ -56,6 +51,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 	
 	MenuScene *scene = [MenuScene node];
 	[[Director sharedDirector] runWithScene:scene];
+
+    // Setup Ads if NOT Ad Free
+    adManager = [[AdManager alloc] init:placeHolderViewController];
 }
 
 
