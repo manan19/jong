@@ -190,6 +190,7 @@ int mainLayoutArray[12][36] = {
         [p setTag:1];
         MenuItemFont* r = [MenuItemFont itemFromString: @"Resume"];
         [r setTag:2];
+
 		MenuItem *pauseButton = [MenuItemToggle itemWithTarget:self selector:@selector(onPauseGame:) items:p,r,nil];
         MenuItem *backButton = [MenuItemFont itemFromString:@"Back" target:self  selector:@selector(onPuzzleSelect:)];
         MenuItem *restartButton = [MenuItemFont itemFromString:@"Restart" target:self  selector:@selector(onRestartSelect:)];
@@ -237,9 +238,11 @@ int mainLayoutArray[12][36] = {
 
 -(void)onPuzzleSelect:(id)sender
 {
+    [MenuItemFont setFontSize:25];
 	[[self parent] addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:0 tag:0];
     [[self parent] removeChild:self cleanup:YES];
 	[[Director sharedDirector] resume];
+    
 }
 
 
@@ -958,7 +961,7 @@ int mainLayoutArray[12][36] = {
 		[menu2 setPosition:ccp(160,170)];
 		[self addChild:menu2 z:0];
         
-        
+
         MenuItem* backButton = [MenuItemFont itemFromString:@"Back" target:self selector:@selector(onBack:)];
         Menu* backMenu = [Menu menuWithItems:backButton, nil];
         [backMenu setPosition:ccp(160,100)];
