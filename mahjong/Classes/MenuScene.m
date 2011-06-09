@@ -57,7 +57,7 @@
         [menu setPosition:ccp(160,210)];
 		[menu alignItemsVerticallyWithPadding:10];
         [self addChild:menu z:1];
-        //[menu setColor:ccc3(40, 40, 0)];
+        [menu setColor:ccc3(0, 0, 0)];
     }
     return self;
 }
@@ -113,6 +113,7 @@
         MenuItemFont* back = [MenuItemFont itemFromString:@"Back" target:self selector:@selector(Back:)];
         Menu* menu = [Menu menuWithItems:back, nil];
         [menu setPosition:ccp(160,60)];
+        [menu setColor:ccc3(0, 0, 0)];
         [self addChild:menu];
         
     }

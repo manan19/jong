@@ -186,6 +186,7 @@ int mainLayoutArray[12][36] = {
 		menu = [Menu menuWithItems:pauseButton,nil];
 		[menu setPosition:ccp(160,70)];
 		[menu setVisible:NO];
+        [menu setColor:ccc3(0, 0, 0)];
 		[self addChild:menu];
 		
 		/*MenuItem *takeScoreButton = [MenuItemFont itemFromString:@"Take Score" target:self  selector:@selector(onTakeScr:)];
@@ -249,12 +250,13 @@ int mainLayoutArray[12][36] = {
 	[menu setVisible:YES];
     [timeLabel setVisible:YES];
 		
-    float prevBest = [[(MahjonggAppDelegate*)[[UIApplication sharedApplication] delegate]getScoreMananger] getBestScoreForLevel:currentLayoutIndex];
+    float prevBest = [[(MahjonggAppDelegate*)[[UIApplication sharedApplication] delegate]getScoreMananger] getBestScoreForLevel:currentLayoutIndex+1];
     
-    if (prevBest > 0)
+    if (prevBest > 0 && prevBest < 9990)
     {
-        [previousBestTime setString:[NSString stringWithFormat:@"Previous Best: %f",prevBest]];
+        [previousBestTime setString:[NSString stringWithFormat:@"Previous Best: %.2f",prevBest]];
     }
+    else
     {
         [previousBestTime setString:@"Previous Best: NA"];
     }
@@ -782,6 +784,7 @@ int mainLayoutArray[12][36] = {
 		Menu* menu = [Menu menuWithItems:resumeButton,sound,puzzleSelectButton,restartButton,nil];
 		[menu alignItemsVerticallyWithPadding:10];
 		[menu setPosition:ccp(160,240)];
+        [menu setColor:ccc3(0, 0, 0)];
 		[self addChild:menu z:0];
 	}
 	return self;
@@ -903,6 +906,7 @@ int mainLayoutArray[12][36] = {
         MenuItem* backButton = [MenuItemFont itemFromString:@"MainMenu" target:self selector:@selector(onBack:)];
         Menu* backMenu = [Menu menuWithItems:backButton, nil];
         [backMenu setPosition:ccp(160,100)];
+        [backMenu setColor:ccc3(0, 0, 0)];
         [self addChild:backMenu];
     }
     return self;
