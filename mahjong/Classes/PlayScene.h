@@ -69,7 +69,8 @@
 	BOOL tileIDtracker[numberOfTiles];
 	CGPoint previousTouch;
 	int roundScore[(numberOfGames-1)];
-	BOOL enableTouch,endGame;
+	BOOL enableTouch,endGame,gamePaused;
+    Sprite* pauseCover;
 }
 
 -(void) checkWhichTileSelected:(CGPoint)currentPoint; 
@@ -80,6 +81,7 @@
 -(void) gameFinished;
 -(void) beginRoundFunc;
 -(void) getTime;
+-(void) setTilesVisible:(BOOL)b;
 
 
 @end

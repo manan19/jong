@@ -156,6 +156,10 @@ int mainLayoutArray[12][36] = {
 {
 	if ((self = [super initWithColor:color]))
 	{
+        pauseCover = [Sprite spriteWithFile:@"Default.png"];
+        [pauseCover setPosition:ccp(160,120)];
+        [self addChild:pauseCover];
+        [pauseCover setOpacity:100];
 		endGame = FALSE;		
 		roundScore[0] = 600;
 		roundScore[1] = 1200;
@@ -182,8 +186,15 @@ int mainLayoutArray[12][36] = {
 		enableTouch = FALSE;
 		
 		[MenuItemFont setFontSize:19];
-		MenuItem *pauseButton = [MenuItemFont itemFromString:@"Options" target:self  selector:@selector(onPauseGame:)];
-		menu = [Menu menuWithItems:pauseButton,nil];
+        MenuItemFont* p = [MenuItemFont itemFromString: @"Pause"];
+        [p setTag:1];
+        MenuItemFont* r = [MenuItemFont itemFromString: @"Resume"];
+        [r setTag:2];
+		MenuItem *pauseButton = [MenuItemToggle itemWithTarget:self selector:@selector(onPauseGame:) items:p,r,nil];
+        MenuItem *backButton = [MenuItemFont itemFromString:@"Back" target:self  selector:@selector(onPuzzleSelect:)];
+        MenuItem *restartButton = [MenuItemFont itemFromString:@"Restart" target:self  selector:@selector(onRestartSelect:)];
+		menu = [Menu menuWithItems:backButton,restartButton,pauseButton,nil];
+        [menu alignItemsHorizontallyWithPadding:60];
 		[menu setPosition:ccp(160,70)];
 		[menu setVisible:NO];
         [menu setColor:ccc3(0, 0, 0)];
@@ -217,13 +228,39 @@ int mainLayoutArray[12][36] = {
 	return self;
 }
 
+-(void)onRestartSelect:(id)sender
+{
+    [[self parent] restartGame:currentLayoutIndex];
+    [[self parent] removeChild:self cleanup:YES];
+    [[Director sharedDirector] resume];
+}
+
+-(void)onPuzzleSelect:(id)sender
+{
+	[[self parent] addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:0 tag:0];
+    [[self parent] removeChild:self cleanup:YES];
+	[[Director sharedDirector] resume];
+}
 
 
 -(void)onPauseGame:(id)sender
 {
-	[self setIsTouchEnabled:FALSE];
-	[[Director sharedDirector] pause];
-	[self addChild:[[[PauseLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:1 tag:1];
+    if (!gamePaused)
+    {
+        gamePaused = TRUE;
+        [self setIsTouchEnabled:FALSE];
+        [[Director sharedDirector] pause];
+        //[pauseCover setVisible:YES];
+        [self setTilesVisible:FALSE];
+    }
+    else 
+    {
+        gamePaused = FALSE;
+        [self setIsTouchEnabled:TRUE];
+        [[Director sharedDirector] resume];
+        [self setTilesVisible:TRUE];
+    }
+	//[self addChild:[[[PauseLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:1 tag:1];
 }
 
 
@@ -245,8 +282,27 @@ int mainLayoutArray[12][36] = {
     [timeLabel setString:[NSString stringWithFormat:@"Time: %.2f",timeCount]];
 }
 
+-(void)setTilesVisible:(BOOL)b
+{
+    for (int i = 0; i < numRows ;i++ )
+	{
+		for (int j=0;j< numCols;j++)
+		{
+			for (int k = 0; k <= numLayers-1;k++)
+			{
+                [tileBoard[i][j][k] setVisible:b];
+                if (tileBoard[i][j][k])
+                    [tileBoard[i][j][k]->tileShadow setVisible:b];
+            }
+        }
+    }
+    
+}
+
 -(void) initGame
 {	
+    
+    gamePaused = false;
 	[menu setVisible:YES];
     [timeLabel setVisible:YES];
 		
@@ -747,7 +803,7 @@ int mainLayoutArray[12][36] = {
 	
 	{
 		Label* lessScore = [Label labelWithString:@"Tap to continue" fontName:[MenuItemFont fontName] fontSize:20];
-		[lessScore setPosition:ccp(160,120)];
+		[lessScore setPosition:ccp(160,200)];
 		[self addChild:lessScore z:1];
 	}
 	
@@ -903,7 +959,7 @@ int mainLayoutArray[12][36] = {
 		[self addChild:menu2 z:0];
         
         
-        MenuItem* backButton = [MenuItemFont itemFromString:@"MainMenu" target:self selector:@selector(onBack:)];
+        MenuItem* backButton = [MenuItemFont itemFromString:@"Back" target:self selector:@selector(onBack:)];
         Menu* backMenu = [Menu menuWithItems:backButton, nil];
         [backMenu setPosition:ccp(160,100)];
         [backMenu setColor:ccc3(0, 0, 0)];
