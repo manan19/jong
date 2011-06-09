@@ -57,6 +57,7 @@
         [menu setPosition:ccp(160,210)];
 		[menu alignItemsVerticallyWithPadding:10];
         [self addChild:menu z:1];
+        //[menu setColor:ccc3(40, 40, 0)];
     }
     return self;
 }
@@ -92,7 +93,7 @@
     if ((self == [super initWithColor:color]))
     {
         Sprite* bgImage = [Sprite spriteWithFile:@"instructions1.png"];
-        [bgImage setPosition:ccp(160,290)];
+        [bgImage setPosition:ccp(160,320)];
         [bgImage setScale:0.8f];
         [self addChild:bgImage];
         
@@ -101,9 +102,9 @@
         
         Label* l3 = [Label labelWithString:@"3. Clear all the tiles as fast as you can. Compare scores on Game Center." dimensions:CGSizeMake(320, 50) alignment:UITextAlignmentLeft fontName:[MenuItemFont fontName] fontSize:15];
         
-        [l1 setPosition:ccp(170,120)];
-        [l2 setPosition:ccp(170,90)];
-        [l3 setPosition:ccp(170,50)];
+        [l1 setPosition:ccp(170,155)];
+        [l2 setPosition:ccp(170,125)];
+        [l3 setPosition:ccp(170,85)];
         
         [self addChild:l1];
         [self addChild:l2];
@@ -111,7 +112,7 @@
         
         MenuItemFont* back = [MenuItemFont itemFromString:@"Back" target:self selector:@selector(Back:)];
         Menu* menu = [Menu menuWithItems:back, nil];
-        [menu setPosition:ccp(160,460)];
+        [menu setPosition:ccp(160,60)];
         [self addChild:menu];
         
     }

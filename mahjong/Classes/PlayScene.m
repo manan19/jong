@@ -131,7 +131,6 @@ int mainLayoutArray[12][36] = {
 	if ((self = [super init]))
 	{
         [self addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:0];
-		
 	}
 	return self;
 }
@@ -144,7 +143,7 @@ int mainLayoutArray[12][36] = {
 
 -(void) restartGame:(int)index
 {
-    BackgroundLayer* l = [BackgroundLayer node];
+    BackgroundLayer* l = [[[BackgroundLayer alloc] initWithColor:ccc4(0, 120, 0, 255)] autorelease];
     [self addChild:l z:0 tag:0];
     [l readyScreen:index];
 }
@@ -185,7 +184,7 @@ int mainLayoutArray[12][36] = {
 		[MenuItemFont setFontSize:19];
 		MenuItem *pauseButton = [MenuItemFont itemFromString:@"Options" target:self  selector:@selector(onPauseGame:)];
 		menu = [Menu menuWithItems:pauseButton,nil];
-		[menu setPosition:ccp(60,450)];
+		[menu setPosition:ccp(160,70)];
 		[menu setVisible:NO];
 		[self addChild:menu];
 		
@@ -201,7 +200,7 @@ int mainLayoutArray[12][36] = {
 		[self addChild:timeLabel z:0];
         
         previousBestTime = [Label labelWithString:[NSString stringWithFormat: @"Previous Best: %f",timeCount] fontName:[MenuItemFont fontName] fontSize:16];
-		[previousBestTime setPosition:ccp(200,400)];
+		[previousBestTime setPosition:ccp(90,450)];
 		[previousBestTime setVisible:NO];
 		[self addChild:previousBestTime z:0];
         
@@ -327,11 +326,11 @@ int mainLayoutArray[12][36] = {
 	
 	if (numRows%2 == 1)
 	{
-		firstCenter = ccp(160 - (numCols/2)*27*tileScale,220+(numRows/2)*30*tileScale);
+		firstCenter = ccp(160 - (numCols/2)*27*tileScale,250+(numRows/2)*30*tileScale);
 	}
 	else
 	{
-		firstCenter = ccp(160 - ((numCols/2)-0.5f)*27*tileScale,220 + ((numRows/2)-0.5f)*30*tileScale);
+		firstCenter = ccp(160 - ((numCols/2)-0.5f)*27*tileScale,250 + ((numRows/2)-0.5f)*30*tileScale);
 	}
 	
 	
@@ -778,10 +777,10 @@ int mainLayoutArray[12][36] = {
 {
     [self removeAllChildrenWithCleanup:YES];
     BackgroundLayer* backGroundLayer = (BackgroundLayer*)[self parent];
-	[backGroundLayer removeChild:self cleanup:YES];
     [[backGroundLayer parent] restartGame:backGroundLayer->currentLayoutIndex];
     [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
     [[Director sharedDirector] resume];
+    [backGroundLayer removeChild:self cleanup:YES];
 }
 
 -(void)onPuzzleSelect:(id)sender
