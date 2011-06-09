@@ -45,6 +45,7 @@
 }
 
 -(void) finishGame;
+-(void) restartGame:(int)index;
 @end
 
 @interface BackgroundLayer : ColorLayer

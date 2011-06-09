@@ -36,7 +36,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         // Setup for high scores
 	scoreManager = [[ScoreManager alloc] init];
 	[scoreManager readBestTimes];
-    if([scoreManager _isGameCenterAvailable])
+    if([ScoreManager _isGameCenterAvailable])
     {
         leaderboardController = [[GKLeaderboardViewController alloc] init];
     }

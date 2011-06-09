@@ -26,7 +26,7 @@
 - (void) _authenticateLocalPlayer;
 - (void) _registerForAuthenticationNotification;
 - (void) _authenticationChanged;
-- (BOOL) _isGameCenterAvailable;
++ (BOOL) _isGameCenterAvailable;
 - (NSString*)_getFilePath;
 
 @end

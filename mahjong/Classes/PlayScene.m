@@ -231,7 +231,7 @@ int mainLayoutArray[12][36] = {
 
 -(void)onRestartSelect:(id)sender
 {
-    [[self parent] restartGame:currentLayoutIndex];
+    [(PlayScene*)[self parent] restartGame:currentLayoutIndex];
     [[self parent] removeChild:self cleanup:YES];
     [[Director sharedDirector] resume];
 }
@@ -563,7 +563,7 @@ int mainLayoutArray[12][36] = {
 	if (endGame)
 	{
 		[self removeAllChildrenWithCleanup:YES];
-		[parent finishGame];
+		[(PlayScene*)parent finishGame];
 	}
 	
 	NSSet *allTouches = [event allTouches];
@@ -853,7 +853,7 @@ int mainLayoutArray[12][36] = {
 {
     [self removeAllChildrenWithCleanup:YES];
     BackgroundLayer* backGroundLayer = (BackgroundLayer*)[self parent];
-    [[backGroundLayer parent] restartGame:backGroundLayer->currentLayoutIndex];
+    [(PlayScene*)[backGroundLayer parent] restartGame:backGroundLayer->currentLayoutIndex];
     [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
     [[Director sharedDirector] resume];
     [backGroundLayer removeChild:self cleanup:YES];

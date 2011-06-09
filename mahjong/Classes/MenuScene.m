@@ -53,7 +53,11 @@
 		MenuItem *highScore = [MenuItemFont itemFromString:@"HighScore"  target:self selector:@selector(onHighScore:)];
         MenuItem *instructions = [MenuItemFont itemFromString:@"Instructions"  target:self selector:@selector(onInstructions:)];
         
-		Menu *menu = [Menu menuWithItems:start, instructions,highScore, sound,nil];
+        Menu *menu;
+        if([ScoreManager _isGameCenterAvailable])
+            menu = [Menu menuWithItems:start, instructions,highScore, sound,nil];
+        else
+            menu = [Menu menuWithItems:start, instructions, sound,nil];
         [menu setPosition:ccp(160,210)];
 		[menu alignItemsVerticallyWithPadding:10];
         [self addChild:menu z:1];

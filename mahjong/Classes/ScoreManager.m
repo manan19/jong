@@ -17,7 +17,7 @@
 	self = [super init];
 	if (self != nil) {
 		
-		if([self _isGameCenterAvailable])
+		if([ScoreManager _isGameCenterAvailable])
 		{
 			[self _registerForAuthenticationNotification];
 			[self _authenticateLocalPlayer];
@@ -100,7 +100,7 @@
 
 - (void) _reportHighScore:(int64_t) score forCategory: (NSString*) category
 {
-	if( [self _isGameCenterAvailable] && [GKLocalPlayer localPlayer].isAuthenticated )
+	if( [ScoreManager _isGameCenterAvailable] && [GKLocalPlayer localPlayer].isAuthenticated )
 	{
 		GKScore *scoreReporter = [[[GKScore alloc] initWithCategory:category] autorelease];
 		scoreReporter.value = score;
@@ -152,7 +152,7 @@
 	[bestTimes setObject:[NSString stringWithFormat:@"%f",score] forKey:[NSString stringWithFormat:@"%d",level]];
 }
 
--(BOOL)_isGameCenterAvailable
++(BOOL)_isGameCenterAvailable
 {
 		// Check for presence of GKLocalPlayer API.
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
@@ -169,7 +169,7 @@
 {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *appFile;
-	if([self _isGameCenterAvailable] && [GKLocalPlayer localPlayer].isAuthenticated)
+	if([ScoreManager _isGameCenterAvailable] && [GKLocalPlayer localPlayer].isAuthenticated)
 	{
 		appFile = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",[GKLocalPlayer localPlayer].alias]];
 	}
