@@ -700,7 +700,6 @@ int mainLayoutArray[12][36] = {
 		{
 			enableTouch = FALSE;
 			//[self setIsTouchEnabled:FALSE];
-			currentLayoutIndex++;
 			
 			[menu setVisible:NO];
 			[timeLabel setVisible:NO];
