@@ -22,7 +22,7 @@
 // Fast FPS display. FPS are updated 10 times per second without consuming resources
 // uncomment this line to use the old method that updated
 // You need to add the "fps_images.png" file to your project
-#define DIRECTOR_DISPLAY_FAST_FPS 1
+#define DIRECTOR_DISPLAY_FAST_FPS 0
 
 // If you want a Fast Director that dispatches the events more frequently, 
 // define the following line.
