@@ -104,7 +104,7 @@
         
         [l1 setPosition:ccp(170,155)];
         [l2 setPosition:ccp(170,125)];
-        [l3 setPosition:ccp(170,85)];
+        [l3 setPosition:ccp(170,90)];
         
         [self addChild:l1];
         [self addChild:l2];
@@ -112,7 +112,7 @@
         
         MenuItemFont* back = [MenuItemFont itemFromString:@"Back" target:self selector:@selector(Back:)];
         Menu* menu = [Menu menuWithItems:back, nil];
-        [menu setPosition:ccp(160,60)];
+        [menu setPosition:ccp(160,65)];
         [menu setColor:ccc3(0, 0, 0)];
         [self addChild:menu];
         
