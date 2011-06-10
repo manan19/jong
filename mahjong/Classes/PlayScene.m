@@ -8,6 +8,7 @@
 
 #import "PlayScene.h"
 #import "MahjonggAppDelegate.h"
+#import "SimpleAudioEngine_objc.h"
 
 int mainLayoutArray[12][36] = {
     
@@ -333,9 +334,7 @@ int mainLayoutArray[12][36] = {
     
 	if (soundOn)
 	{
-		audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"opener" ofType:@"wav"]]; 
-		AudioServicesCreateSystemSoundID((CFURLRef)audioFile, &shortSound); 
-		AudioServicesPlaySystemSound(shortSound);
+        [[SimpleAudioEngine sharedEngine] playEffect:@"opener.wav"];
 	}
 	
 	for (int i=0;i<numberOfRows;i++)
@@ -625,9 +624,7 @@ int mainLayoutArray[12][36] = {
 						{
 							if (soundOn)
 							{
-								audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"error" ofType:@"wav"]]; 
-								AudioServicesCreateSystemSoundID((CFURLRef)audioFile, &shortSound); 
-								AudioServicesPlaySystemSound(shortSound);
+                                [[SimpleAudioEngine sharedEngine] playEffect:@"error.wav"];
 							}
 							return;
 						}
@@ -646,9 +643,7 @@ int mainLayoutArray[12][36] = {
 	{
 		if (soundOn)
 		{
-			audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"select" ofType:@"wav"]]; 
-			AudioServicesCreateSystemSoundID((CFURLRef)audioFile, &shortSound); 
-			AudioServicesPlaySystemSound(shortSound);
+            [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
 		}
 		
 		previousTile = currentTile;
@@ -662,9 +657,8 @@ int mainLayoutArray[12][36] = {
 	{
 		if (soundOn)
 		{
-			audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"deselect" ofType:@"wav"]]; 
-			AudioServicesCreateSystemSoundID((CFURLRef)audioFile, &shortSound); 
-			AudioServicesPlaySystemSound(shortSound);
+            [[SimpleAudioEngine sharedEngine] playEffect:@"deselect.wav"];
+
 		}
 		
 		ccColor3B Col = [previousTile color];
@@ -679,9 +673,7 @@ int mainLayoutArray[12][36] = {
 	{
 		if (soundOn)
 		{
-			audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"removeTile" ofType:@"wav"]]; 
-			AudioServicesCreateSystemSoundID((CFURLRef)audioFile, &shortSound); 
-			AudioServicesPlaySystemSound(shortSound);
+            [[SimpleAudioEngine sharedEngine] playEffect:@"removeTile.wav"];
 		}
 		
 		
@@ -693,7 +685,6 @@ int mainLayoutArray[12][36] = {
 
 		[self ridTile:previousTile];
 		[self ridTile:currentTile];
-		NSLog(@" ");
 
 		int index;
 		index = previousTile->indexI* numCols + previousTile->indexJ;
@@ -730,9 +721,7 @@ int mainLayoutArray[12][36] = {
 	{
 		if (soundOn)
 		{
-			audioFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"error" ofType:@"wav"]]; 
-			AudioServicesCreateSystemSoundID((CFURLRef)audioFile, &shortSound); 
-			AudioServicesPlaySystemSound(shortSound);
+            [[SimpleAudioEngine sharedEngine] playEffect:@"error.wav"];
 		}
 		
 		ccColor3B Col = [previousTile color];
