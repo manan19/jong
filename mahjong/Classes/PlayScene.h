@@ -59,7 +59,7 @@
 	float tileScale,layerOffset;
 	int numCols,numRows,numLayers,numTiles,numTrials,tileCount,currentLayoutIndex;
 	float timex;
-    Label* timeLabel,*previousBestTime;
+    Label* timeLabel,*previousBestTime,*pauseLabel;
 	float timeCount;
 	int gameScore;
 	Menu *menu;

@@ -217,6 +217,11 @@ int mainLayoutArray[12][36] = {
 		[previousBestTime setVisible:NO];
 		[self addChild:previousBestTime z:0];
         
+        pauseLabel = [Label labelWithString:@"Game Paused" fontName:[MenuItemFont fontName] fontSize:30];
+		[pauseLabel setPosition:ccp(160,330)];
+		[pauseLabel setVisible:NO];
+		[self addChild:pauseLabel z:0];
+        
 //		timerBar = [AtlasSprite spriteWithRect:CGRectMake(0,0, 148, 11) spriteManager:timerSprites];
 //		[timerBar setPosition:ccp(220,450)];
 //		[timerBar setScale:1.0f];
@@ -255,6 +260,7 @@ int mainLayoutArray[12][36] = {
         [[Director sharedDirector] pause];
         //[pauseCover setVisible:YES];
         [self setTilesVisible:FALSE];
+        [pauseLabel setVisible:YES];
     }
     else 
     {
@@ -262,6 +268,7 @@ int mainLayoutArray[12][36] = {
         [self setIsTouchEnabled:TRUE];
         [[Director sharedDirector] resume];
         [self setTilesVisible:TRUE];
+        [pauseLabel setVisible:NO];
     }
 	//[self addChild:[[[PauseLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:1 tag:1];
 }
@@ -416,9 +423,13 @@ int mainLayoutArray[12][36] = {
 		{
 			for (int k = 1; k <= numLayers;k++)
 			{
+                
 				if (k <= layoutArray[currentLayoutIndex][stackCount])
 				{
 					bool enable;
+                    
+                   
+                    
 					if (trackingNumber == 0 || j == numCols-1)
 					{
 						
@@ -462,10 +473,10 @@ int mainLayoutArray[12][36] = {
 						enable = FALSE;
 					}
                     
-                    if (i == 5 && j == 2 && currentLayoutIndex == 5)
-                    {
-                        enable = true;
-                    }
+//                    if (i == 5 && j == 2 && currentLayoutIndex == 5)
+//                    {
+//                        enable = true;
+//                    }
 					
 					int index; 
 					int tempcount = 0;
@@ -537,6 +548,8 @@ int mainLayoutArray[12][36] = {
 				{
 					tileBoard[i][j][k-1] = NULL;
 					tileBoard[i][j][k-1] = NULL;
+                    if (layoutArray[currentLayoutIndex][stackCount] == 0)
+                        trackingNumber = 0;
 				}
 			}
 			zValue = 0;
@@ -798,14 +811,14 @@ int mainLayoutArray[12][36] = {
 {
 	{
 		Label* time = [Label labelWithString:@"Puzzle Complete" fontName:[MenuItemFont fontName] fontSize:30];
-		[time setPosition:ccp(160,300)];
+		[time setPosition:ccp(160,360)];
 		[self addChild:time z:1];
 	}
 	
 	
 	{
 		Label* lessScore = [Label labelWithString:@"Tap to continue" fontName:[MenuItemFont fontName] fontSize:20];
-		[lessScore setPosition:ccp(160,200)];
+		[lessScore setPosition:ccp(160,160)];
 		[self addChild:lessScore z:1];
 	}
 	
