@@ -10,6 +10,7 @@
 #import "MenuScene.h"
 #include "SimpleAudioEngine_objc.h"
 
+
 void uncaughtExceptionHandler(NSException *exception) {
     [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
@@ -59,6 +60,12 @@ void uncaughtExceptionHandler(NSException *exception) {
 
     // Setup Ads if NOT Ad Free
     adManager = [[AdManager alloc] init:placeHolderViewController];
+
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"deselect.wav"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"select.wav"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"error.wav"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"opener.wav"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"removeTile.wav"];
 }
 
 
