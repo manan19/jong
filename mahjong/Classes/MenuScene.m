@@ -10,8 +10,12 @@
 #import "MenuScene.h"
 #import "PlayScene.h"
 #import "MahjonggAppDelegate.h"
+#import "SimpleAudioEngine_objc.h"
 
 @implementation MenuScene
+
+
+
 -(id) init
 {
 	if (self == [super init])
@@ -27,13 +31,17 @@
 
 @implementation MenuLayer 
 
+
+
 -(id)initWithColor:(ccColor4B)color
 {
     if ((self ==  [super initWithColor:color]))
     {
         [MenuItemFont setFontSize:25];
         [MenuItemFont setFontName:@"American Typewriter"];
-		soundOn = TRUE;
+        
+        
+        
         MenuItem *start = [MenuItemFont itemFromString:@"StartGame" target:self  selector:@selector(onStartGame:)];
 		MenuItemToggle *sound; 
         
@@ -41,13 +49,15 @@
         [bgImage setPosition:ccp(160,240)];
         [self addChild:bgImage];
         
-		if (soundOn)
+        MahjonggAppDelegate* appDel = (MahjonggAppDelegate*)[UIApplication sharedApplication];
+        
+		if (appDel->soundOn)
 		{
-			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"SoundOn"],[MenuItemFont itemFromString: @"SoundOff"],nil];
+			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"Sound: ON"],[MenuItemFont itemFromString: @"Sound: OFF"],nil];
 		}
 		else 
 		{
-			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"SoundOff"],[MenuItemFont itemFromString: @"SoundOn"],nil];
+			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"Sound: OFF"],[MenuItemFont itemFromString: @"Sound: ON"],nil];
 		}
 		MenuItem *highScore = [MenuItemFont itemFromString:@"HighScore"  target:self selector:@selector(onHighScore:)];
         MenuItem *instructions = [MenuItemFont itemFromString:@"Instructions"  target:self selector:@selector(onInstructions:)];
@@ -72,8 +82,10 @@
 }
 
 -(void)onSound: (id)sender
-{
-	soundOn = !soundOn;
+{    
+    MahjonggAppDelegate* appDel = (MahjonggAppDelegate*)[UIApplication sharedApplication];
+	appDel->soundOn = !(appDel->soundOn);
+    [[SimpleAudioEngine sharedEngine] setMute:!appDel->soundOn];
 }
 -(void)onHighScore: (id)sender
 {

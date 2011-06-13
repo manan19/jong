@@ -8,6 +8,7 @@
 
 #import "MahjonggAppDelegate.h"
 #import "MenuScene.h"
+#include "SimpleAudioEngine_objc.h"
 
 void uncaughtExceptionHandler(NSException *exception) {
     [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
@@ -30,9 +31,13 @@ void uncaughtExceptionHandler(NSException *exception) {
     placeHolderViewController = [[UIViewController alloc] init];
     [window addSubview:placeHolderViewController.view];
     
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"opener.wav"];
+    
     gameView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     [placeHolderViewController.view addSubview:gameView];
 
+    
+    soundOn = true;
         // Setup for high scores
 	scoreManager = [[ScoreManager alloc] init];
 	[scoreManager readBestTimes];

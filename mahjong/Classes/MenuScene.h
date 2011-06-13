@@ -8,12 +8,12 @@
 
 #import "cocos2d.h"
 
-BOOL soundOn;
+
 
 @interface MenuScene : Scene 
 {
-}
 
+}
 
 @end
 

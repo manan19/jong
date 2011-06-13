@@ -312,7 +312,7 @@ int mainLayoutArray[12][36] = {
 
 -(void) initGame
 {	
-    
+    MahjonggAppDelegate* appDel = (MahjonggAppDelegate*)[UIApplication sharedApplication];
     gamePaused = false;
 	[menu setVisible:YES];
     [timeLabel setVisible:YES];
@@ -332,7 +332,7 @@ int mainLayoutArray[12][36] = {
     
     [self schedule:@selector(getTime) interval:0.03f];
     
-	if (soundOn)
+	//if (appDel->soundOn)
 	{
         [[SimpleAudioEngine sharedEngine] playEffect:@"opener.wav"];
 	}
@@ -601,6 +601,7 @@ int mainLayoutArray[12][36] = {
 
 -(void) checkWhichTileSelected:(CGPoint)currentPoint
 {
+    MahjonggAppDelegate* appDel = (MahjonggAppDelegate*)[UIApplication sharedApplication];
 	tileSprite* currentTile = NULL;
 	int stackCount = 0;
 	
@@ -622,7 +623,7 @@ int mainLayoutArray[12][36] = {
 						}
 						else
 						{
-							if (soundOn)
+							//if (appDel->soundOn)
 							{
                                 [[SimpleAudioEngine sharedEngine] playEffect:@"error.wav"];
 							}
@@ -639,9 +640,10 @@ int mainLayoutArray[12][36] = {
 
 -(void) checkIfMatch:(tileSprite*)currentTile 
 {
+    MahjonggAppDelegate* appDel = (MahjonggAppDelegate*)[UIApplication sharedApplication];
 	if (previousTile == NULL)
 	{
-		if (soundOn)
+		//if (appDel->soundOn)
 		{
             [[SimpleAudioEngine sharedEngine] playEffect:@"select.wav"];
 		}
@@ -655,7 +657,7 @@ int mainLayoutArray[12][36] = {
 	
 	if (previousTile == currentTile)
 	{
-		if (soundOn)
+		//if (appDel->soundOn)
 		{
             [[SimpleAudioEngine sharedEngine] playEffect:@"deselect.wav"];
 
@@ -671,7 +673,7 @@ int mainLayoutArray[12][36] = {
 	
 	if (previousTile->tileID == currentTile->tileID)
 	{
-		if (soundOn)
+		//if (appDel->soundOn)
 		{
             [[SimpleAudioEngine sharedEngine] playEffect:@"removeTile.wav"];
 		}
@@ -719,7 +721,7 @@ int mainLayoutArray[12][36] = {
 	}
 	else
 	{
-		if (soundOn)
+		//if (appDel->soundOn)
 		{
             [[SimpleAudioEngine sharedEngine] playEffect:@"error.wav"];
 		}
@@ -818,75 +820,6 @@ int mainLayoutArray[12][36] = {
 
 @end
 
-@implementation PauseLayer
-- (id) initWithColor:(ccColor4B)color
-{
-	if (self == [super initWithColor:color])
-	{
-		//Sprite* bg = [Sprite spriteWithFile:@"Bub.png"];
-		//[bg setPosition:ccp(160,240)];
-        
-		//[self addChild:bg];
-		MenuItem *resumeButton = [MenuItemFont itemFromString:@"Resume" target:self selector:@selector(onResume:)];
-        MenuItem *puzzleSelectButton = [MenuItemFont itemFromString:@"Puzzle Select Menu" target:self selector:@selector(onPuzzleSelect:)];
-        
-		MenuItemToggle *sound; 
-		if (soundOn)
-		{
-			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"SoundOn"],[MenuItemFont itemFromString: @"SoundOff"],nil];
-		}
-		else 
-		{
-			sound = [MenuItemToggle itemWithTarget:self selector:@selector(onSound:) items:[MenuItemFont itemFromString: @"SoundOff"],[MenuItemFont itemFromString: @"SoundOn"],nil];
-		}
-        MenuItem* restartButton = [MenuItemFont itemFromString:@"Restart" target:self selector:@selector(onRestartSelect:)];
-        
-		Menu* menu = [Menu menuWithItems:resumeButton,sound,puzzleSelectButton,restartButton,nil];
-		[menu alignItemsVerticallyWithPadding:10];
-		[menu setPosition:ccp(160,240)];
-        [menu setColor:ccc3(0, 0, 0)];
-		[self addChild:menu z:0];
-	}
-	return self;
-}
-
--(void)onRestartSelect:(id)sender
-{
-    [self removeAllChildrenWithCleanup:YES];
-    BackgroundLayer* backGroundLayer = (BackgroundLayer*)[self parent];
-    [(PlayScene*)[backGroundLayer parent] restartGame:backGroundLayer->currentLayoutIndex];
-    [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
-    [[Director sharedDirector] resume];
-    [backGroundLayer removeChild:self cleanup:YES];
-}
-
--(void)onPuzzleSelect:(id)sender
-{
-	[self removeAllChildrenWithCleanup:YES];
-	Layer* backGroundLayer = (Layer*)[self parent];
-	[backGroundLayer removeChild:self cleanup:YES];
-	[[backGroundLayer parent] addChild:[[[LevelSelectLayer alloc] initWithColor:ccc4(0, 120, 0,255)] autorelease] z:0 tag:0];
-    [[backGroundLayer parent] removeChild:backGroundLayer cleanup:YES];
-	[[Director sharedDirector] resume];
-}
-
--(void)onResume:(id)sender
-{
-	[self removeAllChildrenWithCleanup:YES];
-	Layer* backGroundLayer = (Layer*)[self parent];
-	[backGroundLayer removeChild:self cleanup:YES];
-	[backGroundLayer setIsTouchEnabled:YES];
-	[[Director sharedDirector] resume];
-}
-
--(void)onSound:(id)sender
-{
-	soundOn =!soundOn;
-}
-
-
-
-@end
 
 @implementation LevelSelectLayer
 

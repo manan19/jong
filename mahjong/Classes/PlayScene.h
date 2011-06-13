@@ -87,10 +87,6 @@
 
 @end
 
-@interface PauseLayer : ColorLayer
-{	
-}
-@end
 
 @interface LevelSelectLayer : ColorLayer 
 {

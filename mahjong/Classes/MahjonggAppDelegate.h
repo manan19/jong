@@ -18,6 +18,7 @@
     AdManager* adManager;
     @public ScoreManager* scoreManager;
     GKLeaderboardViewController *leaderboardController;
+    BOOL soundOn;
 }
 
 - (void) showLeaderboard;
